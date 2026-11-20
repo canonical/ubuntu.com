@@ -1,0 +1,96 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Ubuntu Server for Huawei Kunpeng | Download{% endblock %}
+
+{% block meta_description %}
+    Ubuntu Server for Huawei Kunpeng brings Ubuntu Server and the Ubuntu ecosystem to Huawei platforms
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+    https://docs.google.com/document/d/1tFZ-wlLgvMwSQD3qL1EyqsCz8wgrUbT3AXwiKeT15hk/edit?tab=t.0
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+    is-paper
+{% endblock body_class %}
+
+{% block content %}
+    <section class="p-strip is-shallow u-no-padding--bottom">
+        <div class="row--50-50 p-section--shallow">
+            <div class="col">
+                <h1>Ubuntu Server for Huawei Kunpeng</h1>
+            </div>
+            <div class="col">
+                <p>
+                    Ubuntu Server for Huawei Kunpeng brings an optimized Ubuntu Server image to the Huawei Kunpeng SoC platform, opening the door to Huawei’s hardware acceleration and advanced microarchitectures.
+                </p>
+                <p>
+                    This custom image fully supports Huawei Kunpeng BoostKit and its specific hardware ecosystem, including specialized network interface cards (NICs) and storage. The Kunpeng platform is designed for building out workloads in the data center, telecommunications, database, and AI spaces. With its unique deployment toolset (including Juju and MAAS), Ubuntu makes the management of those workloads straightforward.
+                </p>
+                <p>
+                    Starting with Ubuntu 24.04 LTS, the Huawei Kunpeng 950 and 920 New Type processors are supported.
+                </p>
+                <p>This is the custom ISO image of the Ubuntu Server installer.</p>
+                <p>
+                    <a class="p-button--positive"
+                       href="https://silicon.canonical.com/huawei/kunpeng/releases/noble/24.04-beta/server/kunpeng-noble-live-server-arm64.iso">Download 24.04.5 LTS</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="p-section--deep">
+        <div class="u-fixed-width">
+            <hr class="p-rule" />
+            <div class="p-section--shallow">
+                <h2>Get started with Ubuntu today</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9 col-start-large-4 col-start-medium-2 col-medium-5">
+                <hr class="p-rule" />
+                <div class="row">
+                    <div class="col-3 col-medium-2">
+                        <h3 class="p-heading--5">Installation guides</h3>
+                    </div>
+                    <div class="col-6 col-medium-3">
+                        <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+                        <p>
+                            <a href="/server/docs/tutorial/basic-installation/#basic-installation">Installation instructions for Ubuntu Server&nbsp;›</a>
+                        </p>
+                    </div>
+                </div>
+                <hr class="p-rule" />
+                <div class="row">
+                    <div class="col-3 col-medium-2">
+                        <h3 class="p-heading--5">Image release notes</h3>
+                    </div>
+                    <div class="col-6 col-medium-3">
+                        <p>Please see the release notes for this Huawei custom image.</p>
+                        <p>
+                            <a href="https://silicon.canonical.com/huawei/kunpeng/releases/noble/24.04-beta/server/Huawei-Jinze-Classic-Server-2404-Beta-Image-ReleaseNotes.pdf">Release notes&nbsp;›</a>
+                        </p>
+                    </div>
+                </div>
+                <hr class="p-rule" />
+                <div class="row">
+                    <div class="col-3 col-medium-2">
+                        <h3 class="p-heading--5">Access to Canonical partner portal</h3>
+                    </div>
+                    <div class="col-6 col-medium-3">
+                        <p class="u-no-margin--bottom">
+                            <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
+                        </p>
+                        <p class="u-no-margin--bottom">
+                            <a href="https://askubuntu.com/">Ask Ubuntu</a>
+                        </p>
+                        <p>
+                            <a href="https://answers.launchpad.net/ubuntu">Launchpad</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
