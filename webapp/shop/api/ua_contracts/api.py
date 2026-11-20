@@ -148,6 +148,20 @@ class UAContractsAPI:
 
         return {}
 
+    def get_account_tos(self, account_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/accounts/{account_id}/tos",
+            error_rules=["default", "no-found"],
+        ).json()
+
+    def put_account_tos(self, account_id: str) -> dict:
+        return self._request(
+            method="put",
+            path=f"v1/accounts/{account_id}/tos",
+            error_rules=["default"],
+        ).json()
+
     def get_contract_token(self, contract_id: str) -> Optional[str]:
         return self._request(
             method="post",

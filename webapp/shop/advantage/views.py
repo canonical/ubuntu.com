@@ -188,6 +188,32 @@ def delete_account_user_role(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
+def get_account_tos(advantage_mapper, **kwargs):
+    account_id = kwargs.get("account_id")
+
+    return flask.jsonify(
+        advantage_mapper.get_account_tos_acceptance(account_id)
+    )
+
+
+@shop_decorator(area="advantage", permission="user", response="json")
+def put_account_tos(advantage_mapper, **kwargs):
+    # When viewing as another user the request still carries the viewer's
+    # own credentials, so the acceptance would be recorded against them.
+    if flask.request.args.get("email"):
+        return (
+            flask.jsonify(
+                {"errors": "cannot accept terms on behalf of another user"}
+            ),
+            403,
+        )
+
+    account_id = kwargs.get("account_id")
+
+    return flask.jsonify(advantage_mapper.accept_account_tos(account_id))
+
+
+@shop_decorator(area="advantage", permission="user", response="json")
 def get_contract_token(advantage_mapper, **kwargs):
     contract_id = kwargs.get("contract_id")
 

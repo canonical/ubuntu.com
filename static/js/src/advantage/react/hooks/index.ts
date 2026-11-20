@@ -1,3 +1,4 @@
+export { useAccountTOS, useAcceptAccountTOS } from "./useAccountTOS";
 export { useCancelContract } from "./useCancelContract";
 export { useContractToken } from "./useContractToken";
 export { useLastPurchaseIds } from "./useLastPurchaseIds";

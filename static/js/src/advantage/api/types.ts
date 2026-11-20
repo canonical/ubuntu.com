@@ -73,6 +73,12 @@ export type ContractToken = {
   contract_token: string;
 };
 
+export type AccountTOS = {
+  accepted: boolean;
+  accepted_at: string | null;
+  email: string | null;
+};
+
 export type LastPurchaseIds = {
   [UserSubscriptionMarketplace.CanonicalUA]: {
     monthly: string;
