@@ -35,28 +35,24 @@
         const cookieName = "control_or_variant";
         const readCookie = (name) =>
           document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"))?.[2];
+        const consented = () =>
+          ["all", "performance"].includes(readCookie("_cookies_accepted"));
 
-        // Like user_id, a group is only assigned after analytics consent
-        const consent = readCookie("_cookies_accepted");
-        if (!takeoverSwitch || !["all", "performance"].includes(consent)) {
+        // Like user_id, the group is only saved and reported after analytics consent
+        if (!takeoverSwitch || !consented()) {
           document.cookie = cookieName + "=; max-age=0; path=/";
-          return;
         }
+        if (!takeoverSwitch) return;
 
+        // Before consent nothing is saved, so every load picks a group again
         let group = readCookie(cookieName);
         if (group !== "control" && group !== "variant") {
           group = Math.random() < 0.5 ? "control" : "variant";
-          document.cookie = cookieName + "=" + group + "; max-age=1209600; path=/";
         }
 
         const hero = document.querySelector(".js-hero");
         const takeover = document.getElementById("takeover");
         if (!hero || !takeover) return;
-
-        // Marketing tracks each individual group's clicks by these ids in GTM
-        for (const link of takeover.querySelectorAll("#takeover-ctas a")) {
-          link.id = group + "-" + link.id;
-        }
 
         if (group === "variant") {
           // Moving the element keeps the tab order the same as the visual order
@@ -67,12 +63,25 @@
           );
         }
 
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: "test",
-          test_type: "takeover position",
-          control_or_variant: group,
-        });
+        const record = () => {
+          if (readCookie(cookieName) !== group) {
+            document.cookie = cookieName + "=" + group + "; max-age=1209600; path=/";
+          }
+          // Marketing tracks each individual group's clicks by these ids in GTM
+          for (const link of takeover.querySelectorAll("#takeover-ctas a")) {
+            link.id = group + "-" + link.id;
+          }
+          window.dataLayer = window.dataLayer || [];
+          dataLayer.push({
+            event: "test",
+            test_type: "takeover position",
+            control_or_variant: group,
+          });
+        };
+
+        // A visitor who accepts on this page keeps the group already on screen
+        if (consented()) record();
+        else document.addEventListener("analytics-consent", record, { once: true });
       })();
     </script>
 
