@@ -5,11 +5,12 @@
   <div class="p-tabs js-tabbed-content">
     <div class="p-tabs__list" role="tablist" aria-label="CVSS {{ version_key }} sources">
       {% for entry in entries %}
+        {% set id_prefix = "cvss-" ~ version_key ~ "-" ~ loop.index ~ "-" %}
         <div class="p-tabs__item">
           <button class="p-tabs__link"
                   role="tab"
-                  id="cvss-{{ version_key }}-{{ loop.index }}-source-tab"
-                  aria-controls="cvss-{{ version_key }}-{{ loop.index }}-source-panel"
+                  id="{{ id_prefix }}source-tab"
+                  aria-controls="{{ id_prefix }}source-panel"
                   aria-selected="{{ 'true' if loop.first else 'false' }}"
                   tabindex="{{ '0' if loop.first else '-1' }}">
             {{ entry.source or "Unknown source" }}
@@ -22,14 +23,26 @@
 {% endif %}
 
 {% for entry in entries %}
-  {% set idp = "cvss-" ~ version_key ~ "-" ~ loop.index ~ "-" %}
-  <div {% if has_tabs %} role="tabpanel" id="cvss-{{ version_key }}-{{ loop.index }}-source-panel" aria-labelledby="cvss-{{ version_key }}-{{ loop.index }}-source-tab" tabindex="0" {% if not loop.first %}class="u-hide"{% endif %} {% endif %}>
-    {% if version_key == "v4" %}
-      {% set cvssV4 = entry.cvss %}
-      {% include "security/cves/partials/_cvss-v4-section.html" %}
-    {% else %}
-      {% set cvssV3 = entry.cvss %}
-      {% include "security/cves/partials/_cvss-v3-section.html" %}
-    {% endif %}
+  {% set id_prefix = "cvss-" ~ version_key ~ "-" ~ loop.index ~ "-" %}
+  {% set severity_icon = severity_icons[(entry.severity or "") | lower] %}
+  <div {% if has_tabs %} role="tabpanel" id="{{ id_prefix }}source-panel" aria-labelledby="{{ id_prefix }}source-tab" tabindex="0" {% if not loop.first %}class="u-hide"{% endif %} {% endif %}>
+    <p class="u-sv1">
+      <span class="cve-score-summary">
+        <strong>Base score</strong>
+        {% if severity_icon %}
+          {{ image(url=severity_icon,
+                   alt="",
+                   width="16",
+                   height="16",
+                   hi_def=True,
+                   loading="auto") | safe
+          }}
+        {% endif %}
+        <span>{{ entry.cvss.baseScore }}{% if entry.severity %} &middot; {{ entry.severity | capitalize }}{% endif %}</span>
+      </span>
+    </p>
+    {% with cvss = entry.cvss %}
+      {% include "security/cves/partials/_cvss-" ~ version_key ~ "-section.html" %}
+    {% endwith %}
   </div>
 {% endfor %}

@@ -149,9 +149,11 @@
                     </p>
                   </div>
                 </div>
-                <p>
-{% if cvssV3 or cvssV4 %}<a href="#impact-score">Score breakdown</a>{% endif %}
-                </p>
+                {% if cvssV3 or cvssV4 %}
+                  <p>
+                    <a href="#impact-score">Score breakdown</a>
+                  </p>
+                {% endif %}
               </div>
             {% endif %}
           </div>
@@ -471,17 +473,17 @@
 
             {% if cvssV4 %}
               <div id="cvss-v4-section">
-                {% set entries = cvssV4 %}
-                {% set version_key = "v4" %}
-                {% include "security/cves/partials/_cvss-sources.html" %}
+                {% with entries = cvssV4, version_key = "v4" %}
+                  {% include "security/cves/partials/_cvss-sources.html" %}
+                {% endwith %}
               </div>
             {% endif %}
 
             {% if cvssV3 %}
               <div id="cvss-v3-section"{% if cvssV4 %} class="u-hide"{% endif %}>
-                {% set entries = cvssV3 %}
-                {% set version_key = "v3" %}
-                {% include "security/cves/partials/_cvss-sources.html" %}
+                {% with entries = cvssV3, version_key = "v3" %}
+                  {% include "security/cves/partials/_cvss-sources.html" %}
+                {% endwith %}
               </div>
             {% endif %}
           </div>

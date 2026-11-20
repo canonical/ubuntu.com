@@ -1,41 +1,20 @@
 <div>
-
-  {% set baseScore = cvssV4.baseScore %}
-  {% set severityLabel = (entry.severity or "") | capitalize %}
-  {% set severityIcon = severity_icons[(entry.severity or "") | lower] %}
-
-  <p class="u-sv1">
-    <span class="cve-score-summary">
-      <strong>Base score</strong>
-      {% if severityIcon %}
-        {{ image(url=severityIcon,
-                                  alt="",
-                                  width="16",
-                                  height="16",
-                                  hi_def=True,
-                                  loading="auto") | safe
-        }}
-      {% endif %}
-      <span>{{ baseScore }}{% if severityLabel %} &middot; {{ severityLabel }}{% endif %}</span>
-    </span>
-  </p>
-
   <aside class="p-accordion u-sv1" data-multiple-expanded="true">
     <ul class="p-accordion__list">
-      {% set baseMetrics = cvssV4.baseMetrics %}
+      {% set baseMetrics = cvss.baseMetrics %}
       {% if baseMetrics %}
         <li class="p-accordion__group">
           <div role="heading" aria-level="3" class="p-accordion__heading">
             <button type="button"
                     class="p-accordion__tab"
-                    id="{{ idp }}base-metrics-tab"
-                    aria-controls="{{ idp }}base-metrics-section"
+                    id="{{ id_prefix }}base-metrics-tab"
+                    aria-controls="{{ id_prefix }}base-metrics-section"
                     aria-expanded="true">Base metrics</button>
           </div>
           <section class="p-accordion__panel"
-                   id="{{ idp }}base-metrics-section"
+                   id="{{ id_prefix }}base-metrics-section"
                    aria-hidden="false"
-                   aria-labelledby="{{ idp }}base-metrics-tab">
+                   aria-labelledby="{{ id_prefix }}base-metrics-tab">
             <table>
               <thead>
                 <tr>
@@ -94,20 +73,20 @@
         </li>
       {% endif %}
 
-      {% set supplementalMetrics = cvssV4.supplementalMetrics %}
+      {% set supplementalMetrics = cvss.supplementalMetrics %}
       {% if supplementalMetrics %}
         <li class="p-accordion__group">
           <div role="heading" aria-level="3" class="p-accordion__heading">
             <button type="button"
                     class="p-accordion__tab"
-                    id="{{ idp }}supplemental-metrics-tab"
-                    aria-controls="{{ idp }}supplemental-metrics-section"
+                    id="{{ id_prefix }}supplemental-metrics-tab"
+                    aria-controls="{{ id_prefix }}supplemental-metrics-section"
                     aria-expanded="false">Supplemental metrics</button>
           </div>
           <section class="p-accordion__panel"
-                   id="{{ idp }}supplemental-metrics-section"
+                   id="{{ id_prefix }}supplemental-metrics-section"
                    aria-hidden="true"
-                   aria-labelledby="{{ idp }}supplemental-metrics-tab">
+                   aria-labelledby="{{ id_prefix }}supplemental-metrics-tab">
             <table>
               <thead>
                 <tr>
@@ -146,20 +125,20 @@
         </li>
       {% endif %}
 
-      {% set environmentalMetrics = cvssV4.environmentalMetrics %}
+      {% set environmentalMetrics = cvss.environmentalMetrics %}
       {% if environmentalMetrics %}
         <li class="p-accordion__group">
           <div role="heading" aria-level="3" class="p-accordion__heading">
             <button type="button"
                     class="p-accordion__tab"
-                    id="{{ idp }}environmental-metrics-tab"
-                    aria-controls="{{ idp }}environmental-metrics-section"
+                    id="{{ id_prefix }}environmental-metrics-tab"
+                    aria-controls="{{ id_prefix }}environmental-metrics-section"
                     aria-expanded="false">Environmental metrics</button>
           </div>
           <section class="p-accordion__panel"
-                   id="{{ idp }}environmental-metrics-section"
+                   id="{{ id_prefix }}environmental-metrics-section"
                    aria-hidden="true"
-                   aria-labelledby="{{ idp }}environmental-metrics-tab">
+                   aria-labelledby="{{ id_prefix }}environmental-metrics-tab">
             <table>
               <thead>
                 <tr>
@@ -232,20 +211,20 @@
         </li>
       {% endif %}
 
-      {% set threatMetrics = cvssV4.threatMetrics %}
+      {% set threatMetrics = cvss.threatMetrics %}
       {% if threatMetrics %}
         <li class="p-accordion__group">
           <div role="heading" aria-level="3" class="p-accordion__heading">
             <button type="button"
                     class="p-accordion__tab"
-                    id="{{ idp }}threat-metrics-tab"
-                    aria-controls="{{ idp }}threat-metrics-section"
+                    id="{{ id_prefix }}threat-metrics-tab"
+                    aria-controls="{{ id_prefix }}threat-metrics-section"
                     aria-expanded="false">Threat metrics</button>
           </div>
           <section class="p-accordion__panel"
-                   id="{{ idp }}threat-metrics-section"
+                   id="{{ id_prefix }}threat-metrics-section"
                    aria-hidden="true"
-                   aria-labelledby="{{ idp }}threat-metrics-tab">
+                   aria-labelledby="{{ id_prefix }}threat-metrics-tab">
             <table>
               <thead>
                 <tr>
@@ -268,14 +247,14 @@
         <div role="heading" aria-level="3" class="p-accordion__heading">
           <button type="button"
                   class="p-accordion__tab"
-                  id="{{ idp }}scores-tab"
-                  aria-controls="{{ idp }}scores-section"
+                  id="{{ id_prefix }}scores-tab"
+                  aria-controls="{{ id_prefix }}scores-section"
                   aria-expanded="false">Scores</button>
         </div>
         <section class="p-accordion__panel"
-                 id="{{ idp }}scores-section"
+                 id="{{ id_prefix }}scores-section"
                  aria-hidden="true"
-                 aria-labelledby="{{ idp }}scores-tab">
+                 aria-labelledby="{{ id_prefix }}scores-tab">
           <table>
             <thead>
               <tr>
@@ -286,19 +265,19 @@
             <tbody>
               <tr>
                 <th>Base score</th>
-                <td>{% if cvssV4.baseScore %}{{ cvssV4.baseScore }} &middot; {{ cvssV4.baseSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if cvss.baseScore %}{{ cvss.baseScore }} &middot; {{ cvss.baseSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
               </tr>
               <tr>
                 <th>Base + Threat score</th>
-                <td>{% if cvssV4.baseThreatScore %}{{ cvssV4.baseThreatScore }} &middot; {{ cvssV4.baseThreatSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if cvss.baseThreatScore %}{{ cvss.baseThreatScore }} &middot; {{ cvss.baseThreatSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
               </tr>
               <tr>
                 <th>Base + Environmental score</th>
-                <td>{% if cvssV4.baseEnvironmentalScore %}{{ cvssV4.baseEnvironmentalScore }} &middot; {{ cvssV4.baseEnvironmentalSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if cvss.baseEnvironmentalScore %}{{ cvss.baseEnvironmentalScore }} &middot; {{ cvss.baseEnvironmentalSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
               </tr>
               <tr>
                 <th>Base + Threat + Environmental score</th>
-                <td>{% if cvssV4.baseThreatEnvironmentalScore %}{{ cvssV4.baseThreatEnvironmentalScore }} &middot; {{ cvssV4.baseThreatEnvironmentalSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if cvss.baseThreatEnvironmentalScore %}{{ cvss.baseThreatEnvironmentalScore }} &middot; {{ cvss.baseThreatEnvironmentalSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
               </tr>
             </tbody>
           </table>
@@ -307,9 +286,9 @@
     </ul>
   </aside>
 
-  {% if cvssV4.vectorString %}
+  {% if cvss.vectorString %}
     <p>
-      <strong>Vector:</strong> {{ cvssV4.vectorString }}
+      <strong>Vector:</strong> {{ cvss.vectorString }}
     </p>
   {% endif %}
 </div>

@@ -1,39 +1,18 @@
 <div>
-
-  {% set baseScore = cvssV3.baseScore %}
-  {% set severityLabel = (entry.severity or "") | capitalize %}
-  {% set severityIcon = severity_icons[(entry.severity or "") | lower] %}
-
-  <p class="u-sv1">
-    <span class="cve-score-summary">
-      <strong>Base score</strong>
-      {% if severityIcon %}
-        {{ image(url=severityIcon,
-                                  alt="",
-                                  width="16",
-                                  height="16",
-                                  hi_def=True,
-                                  loading="auto") | safe
-        }}
-      {% endif %}
-      <span>{{ baseScore }}{% if severityLabel %} &middot; {{ severityLabel }}{% endif %}</span>
-    </span>
-  </p>
-
   <aside class="p-accordion u-sv1" data-multiple-expanded="true">
     <ul class="p-accordion__list">
       <li class="p-accordion__group">
         <div role="heading" aria-level="3" class="p-accordion__heading">
           <button type="button"
                   class="p-accordion__tab"
-                  id="{{ idp }}base-metrics-tab"
-                  aria-controls="{{ idp }}base-metrics-section"
+                  id="{{ id_prefix }}base-metrics-tab"
+                  aria-controls="{{ id_prefix }}base-metrics-section"
                   aria-expanded="true">Base metrics</button>
         </div>
         <section class="p-accordion__panel"
-                 id="{{ idp }}base-metrics-section"
+                 id="{{ id_prefix }}base-metrics-section"
                  aria-hidden="false"
-                 aria-labelledby="{{ idp }}base-metrics-tab">
+                 aria-labelledby="{{ id_prefix }}base-metrics-tab">
           <table>
             <thead>
               <tr>
@@ -44,35 +23,35 @@
             <tbody>
               <tr>
                 <th>Attack vector</th>
-                <td>{{ cvssV3.attackVector | default('-', true) | capitalize }}</td>
+                <td>{{ cvss.attackVector | default('-', true) | capitalize }}</td>
               </tr>
               <tr>
                 <th>Attack complexity</th>
-                <td>{{ cvssV3.attackComplexity | default('-', true) | capitalize }}</td>
+                <td>{{ cvss.attackComplexity | default('-', true) | capitalize }}</td>
               </tr>
               <tr>
                 <th>Privileges required</th>
-                <td>{{ cvssV3.privilegesRequired | default('-', true) | capitalize }}</td>
+                <td>{{ cvss.privilegesRequired | default('-', true) | capitalize }}</td>
               </tr>
               <tr>
                 <th>User interaction</th>
-                <td>{{ cvssV3.userInteraction | default('-', true) | capitalize }}</td>
+                <td>{{ cvss.userInteraction | default('-', true) | capitalize }}</td>
               </tr>
               <tr>
                 <th>Scope</th>
-                <td>{{ cvssV3.scope | default('-', true) | capitalize }}</td>
+                <td>{{ cvss.scope | default('-', true) | capitalize }}</td>
               </tr>
               <tr>
                 <th>Confidentiality impact</th>
-                <td>{{ cvssV3.confidentialityImpact | default('-', true) | capitalize }}</td>
+                <td>{{ cvss.confidentialityImpact | default('-', true) | capitalize }}</td>
               </tr>
               <tr>
                 <th>Integrity impact</th>
-                <td>{{ cvssV3.integrityImpact | default('-', true) | capitalize }}</td>
+                <td>{{ cvss.integrityImpact | default('-', true) | capitalize }}</td>
               </tr>
               <tr>
                 <th>Availability impact</th>
-                <td>{{ cvssV3.availabilityImpact | default('-', true) | capitalize }}</td>
+                <td>{{ cvss.availabilityImpact | default('-', true) | capitalize }}</td>
               </tr>
             </tbody>
           </table>
@@ -83,14 +62,14 @@
         <div role="heading" aria-level="3" class="p-accordion__heading">
           <button type="button"
                   class="p-accordion__tab"
-                  id="{{ idp }}scores-tab"
-                  aria-controls="{{ idp }}scores-section"
+                  id="{{ id_prefix }}scores-tab"
+                  aria-controls="{{ id_prefix }}scores-section"
                   aria-expanded="false">Scores</button>
         </div>
         <section class="p-accordion__panel"
-                 id="{{ idp }}scores-section"
+                 id="{{ id_prefix }}scores-section"
                  aria-hidden="true"
-                 aria-labelledby="{{ idp }}scores-tab">
+                 aria-labelledby="{{ id_prefix }}scores-tab">
           <table>
             <thead>
               <tr>
@@ -101,7 +80,7 @@
             <tbody>
               <tr>
                 <th>Base score</th>
-                <td>{% if cvssV3.baseScore %}{{ cvssV3.baseScore }}{% if cvssV3.baseSeverity %} &middot; {{ cvssV3.baseSeverity | capitalize }}{% endif %}{% else %}-{% endif %}</td>
+                <td>{% if cvss.baseScore %}{{ cvss.baseScore }}{% if cvss.baseSeverity %} &middot; {{ cvss.baseSeverity | capitalize }}{% endif %}{% else %}-{% endif %}</td>
               </tr>
               <tr>
                 <th>Exploitability score</th>
@@ -118,9 +97,9 @@
     </ul>
   </aside>
 
-  {% if cvssV3.vectorString %}
+  {% if cvss.vectorString %}
     <p>
-      <strong>Vector:</strong> {{ cvssV3.vectorString }}
+      <strong>Vector:</strong> {{ cvss.vectorString }}
     </p>
   {% endif %}
 </div>
