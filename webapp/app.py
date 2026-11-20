@@ -971,6 +971,7 @@ app.add_url_rule(
 # "developer-diaries". Anonymous reads, so only public topics are
 # published and the admin API bucket is left alone. Own session, as
 # the shared one carries the admin API key headers.
+developer_diaries_path = "/developer-diaries"
 developer_diaries = Articles(
     api=DiscourseAPI(
         base_url="https://discourse.ubuntu.com/",
@@ -978,17 +979,17 @@ developer_diaries = Articles(
         cache=ResponseCache(ttl=300),
     ),
     tag="developer-diaries",
-    url_prefix="/community/developer-diaries",
+    url_prefix=developer_diaries_path,
     hidden_tags=["blog", "featured"],
 )
 
 app.add_url_rule(
-    "/community/developer-diaries",
+    developer_diaries_path,
     view_func=build_developer_diaries_index(developer_diaries),
 )
 
 app.add_url_rule(
-    "/community/developer-diaries/<slug>",
+    f"{developer_diaries_path}/<slug>",
     view_func=build_developer_diaries_article(developer_diaries),
 )
 

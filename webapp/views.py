@@ -2150,7 +2150,7 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
     return display_ubuntu_weekly_newsletter
 
 
-# Topic filters on /community/developer-diaries: an article matches a topic
+# Topic filters on /developer-diaries: an article matches a topic
 # when it has any of the topic's Discourse tags
 DEVELOPER_DIARIES_TOPICS = [
     {"name": "Snaps", "slug": "snaps", "tags": ["snap", "snapcraft"]},
@@ -2210,7 +2210,7 @@ def build_developer_diaries_index(developer_diaries):
                 article["author_name"] = str(escape(article["author"]["name"]))
 
         return flask.render_template(
-            "community/developer-diaries/index.html",
+            "developer-diaries/index.html",
             articles=articles,
             topics=DEVELOPER_DIARIES_TOPICS,
             selected_topics=selected_topics,
@@ -2231,7 +2231,7 @@ def build_developer_diaries_article(developer_diaries):
         article["tag_names"] = _developer_diaries_tag_names(article["tags"])
 
         return flask.render_template(
-            "community/developer-diaries/article.html", article=article
+            "developer-diaries/article.html", article=article
         )
 
     return developer_diaries_article
