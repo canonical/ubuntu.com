@@ -29,7 +29,7 @@
     {# Takeover position A/B test: the variant group sees the Latest block above the hero #}
     <script nonce="{{ csp_nonce }}">
       (function() {
-        const takeoverSwitch = false;
+        const takeoverSwitch = true;
         const cookieName = "control_or_variant";
         const readCookie = (name) =>
           document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"))?.[2];
@@ -41,8 +41,12 @@
         }
         if (!takeoverSwitch) return;
 
+        // Demo only: ?group=variant or ?group=control forces a group without consent
+        const forced = new URLSearchParams(location.search).get("group");
+        const demoGroup = ["control", "variant"].includes(forced) ? forced : null;
+
         // Before consent nothing is saved, so every load picks a group again
-        let group = readCookie(cookieName);
+        let group = demoGroup || readCookie(cookieName);
         if (group !== "control" && group !== "variant") {
           group = Math.random() < 0.5 ? "control" : "variant";
         }
@@ -87,7 +91,7 @@
           };
 
           // A visitor who accepts on this page keeps the group already on screen
-          if (consented()) record();
+          if (demoGroup || consented()) record();
           else document.addEventListener("analytics-consent", record, {
             once: true
           });
