@@ -1,0 +1,272 @@
+{% extends "ai/base_ai.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_macros/vf_blog.jinja" import vf_blog %}
+
+{% block title %}Inference Snaps{% endblock %}
+
+{% block meta_description %}
+  Run optimized AI inference locally on Ubuntu. Inference snaps automatically detect your hardware and install pre-trained models optimized for your machine.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/166OcEuYRul8-p-mggEPiQd_6g3cAAKbfaACsDA7tJxw/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {% set contact_url = "/ai/contact-us?product=ai-inference-snaps" %}
+
+  {% call(slot) vf_hero(
+    title_text="Local LLM inference made easy",
+    layout="50/50",
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": "Inference snaps give you simplified access to local LLM inference with pre-trained models specifically optimized for your hardware. Install generative AI on Ubuntu devices, workstations, and servers with a single command."
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Get in touch",
+            "attrs": {"href": contact_url, "class": "js-invoke-modal", "aria-controls": "inference-snaps-modal"}
+          },
+          "secondaries": [
+            {"content_html": "Explore available snaps", "attrs": {"href": "https://documentation.ubuntu.com/inference-snaps/reference/snaps/"}}
+          ]
+        }
+      },
+      {
+        "type": "image",
+        "item": {
+          "aspect_ratio": "16-9",
+          "is_cover": true,
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/739e1d52-hero_img.jpg",
+            "alt": "",
+            "width": "1200",
+            "height": "500",
+            "fetchpriority": "high"
+          }
+        }
+      }
+    ]
+  ) %}
+  {% endcall %}
+
+  {% set services_and_available_endpoints %}
+    <p>
+      Use the model&rsquo;s local API from your preferred language or client to
+      <a href="https://documentation.ubuntu.com/inference-snaps/how-to/integration/">connect it to your application</a>.
+    </p>
+  {% endset %}
+
+  {% set install_blocks = [
+    {
+      "type": "description-block",
+      "items": [
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Inference snaps automatically detect available hardware and install a compatible model and runtime configuration that best match its capabilities. Simply install the snap, then connect it to your application."
+          }
+        },
+        {
+          "type": "cta-block",
+          "padding": "shallow",
+          "item": {
+            "link": {
+              "content_html": "Read the documentation&nbsp;&rsaquo;",
+              "attrs": {"href": "https://documentation.ubuntu.com/inference-snaps/"}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "divided-block",
+      "bullet_type": "number",
+      "items": [
+        {
+          "title_text": "Install the model and matching engine",
+          "contents": [
+            {"type": "code-block", "item": {"is_code_snippet": true, "content": "sudo snap install gemma4"}},
+            {
+              "type": "description",
+              "item": {
+                "type": "text",
+                "content": "Model weights, runtime, and configuration are delivered together. Engine selection automatically takes hardware capabilities and available memory into account."
+              }
+            }
+          ]
+        },
+        {
+          "title_text": "Check services and available endpoints",
+          "contents": [
+            {"type": "code-block", "item": {"is_code_snippet": true, "content": "gemma4 status"}},
+            {"type": "description", "item": {"type": "html", "content": services_and_available_endpoints}}
+          ]
+        }
+      ]
+    }
+  ] %}
+  {{ vf_divided_section(title={"text": "From install to inference"}, blocks=install_blocks) }}
+
+  {% set privacy_description %}
+    <p>
+      With local inference, you can process sensitive data without it ever leaving your device. Additionally, inference snaps are subject to the same
+      <a href="https://snapcraft.io/docs/explanation/security/snap-confinement/">confinement rules</a> as other snaps, so they are isolated from the rest of the machine.
+    </p>
+  {% endset %}
+
+  {% call(slot) vf_equal_heights(
+    title_text="Why run AI locally with inference snaps",
+    items=[
+      {
+        "title_text": "Lower latency",
+        "description_html": "<p>Keep inference near the user or device and process supported workloads directly on the host system. Avoiding remote API calls can save hundreds of milliseconds per request, making for a superior user experience.</p>"
+      },
+      {
+        "title_text": "Repeatable delivery",
+        "description_html": "<p>With inference snaps, you can deploy the LLM and runtime together in a simple, repeatable way. There’s no need to worry about choosing the right quantization, configuring the inference server, or managing updates.</p>"
+      },
+      {
+        "title_text": "Data privacy",
+        "description_html": privacy_description
+      },
+      {
+        "title_text": "Consistent workflow",
+        "description_html": "<p>Use the same packaging approach and workflow as projects move from a bench system to supported edge hardware. With Ubuntu and inference snaps, you get a consistent experience from prototype to deployment.</p>"
+      }
+    ]
+  ) %}
+    {% if slot == "description" %}
+      <p>Solve the complexity of LLM setup while reducing network dependency. Keep responsive AI close to the application.</p>
+    {% endif %}
+  {% endcall %}
+
+  {% call(slot) vf_tiered_list(is_description_full_width_on_desktop=false) %}
+    {% if slot == "title" %}
+      <h2>Inside an inference snap</h2>
+    {% elif slot == "description" %}
+      <p>
+        Engines are the heart of inference snaps. They manage input, generation, and output of information. Inference snaps include engines optimized for a range of hardware, and during installation, the most suitable engine is automatically chosen for the host system. Inference snaps achieve this through engine manifests and the engine manager.
+      </p>
+      <p class="p-section--shallow">
+        <a href="https://documentation.ubuntu.com/inference-snaps/reference/architecture/">Learn more about inference snap architecture&nbsp;&rsaquo;</a>
+      </p>
+      <div class="p-image-container--3-2 is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/d37bd79b-inference_snap_architecture_diagram.jpg",
+                alt="Diagram of inference snap architecture. At the bottom are compute components and drivers. Above is the inference snap, which contains the engine manager, inference engine, and engine manifests. The inference snap connects to the CLI and network API.",
+                width=1347,
+                height=1047,
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% elif slot == "list_item_title_1" %}
+      <h3 class="p-heading--5">Engine manager</h3>
+    {% elif slot == "list_item_description_1" %}
+      <p>Evaluates available system memory and hardware accelerators to automatically select, install, and configure the most compatible inference engine.</p>
+    {% elif slot == "list_item_title_2" %}
+      <h3 class="p-heading--5">Engine manifests</h3>
+    {% elif slot == "list_item_description_2" %}
+      <p>Each engine is accompanied by a manifest file describing its components, configurations, and system requirements.</p>
+    {% elif slot == "list_item_title_3" %}
+      <h3 class="p-heading--5">Inference engine</h3>
+    {% elif slot == "list_item_description_3" %}
+      <p>The engine installed at runtime. A dedicated server execution environment that hosts model weights and exposes standard, production-ready networking APIs.</p>
+    {% elif slot == "list_item_title_4" %}
+      <h3 class="p-heading--5">Compute components</h3>
+    {% elif slot == "list_item_description_4" %}
+      <p>Machine information feeds into the engine manager. This includes the accelerators and processors (CPUs, GPUs, NPUs, and TPUs) used for inference.</p>
+    {% elif slot == "list_item_title_5" %}
+      <h3 class="p-heading--5">CLI</h3>
+    {% elif slot == "list_item_description_5" %}
+      <p>Standardized command-line tools for managing the inference snap.</p>
+    {% endif %}
+  {% endcall %}
+
+  {% call(slot) vf_equal_heights(
+    title_text="Built for real inference workloads",
+    items=[
+      {
+        "title_text": "Visual inspection",
+        "description_html": "<p>Combine images and prompts for assisted local analysis on site.</p>"
+      },
+      {
+        "title_text": "Private assistants",
+        "description_html": "<p>Keep responsive chat and retrieval available on local systems.</p>"
+      },
+      {
+        "title_text": "Developer tools",
+        "description_html": "<p>Bring code assistance to workstations without a remote runtime.</p>"
+      },
+      {
+        "title_text": "Hybrid AI",
+        "description_html": "<p>Let decision models optimize token spend through local and remote models.</p>"
+      }
+    ]
+  ) %}
+    {% if slot == "description" %}
+      <p>
+        Choose the right models for the job,
+        <br />
+        then run them close to the data source.
+      </p>
+      <p>
+        <a href="{{ contact_url }}"
+           class="js-invoke-modal"
+           aria-controls="inference-snaps-modal">Contact us about your use case&nbsp;&rsaquo;</a>
+      </p>
+    {% endif %}
+  {% endcall %}
+
+  {% set cta_link %}
+    <a href="https://documentation.ubuntu.com/inference-snaps/">Read the documentation&nbsp;&rsaquo;</a>
+  {% endset %}
+
+  {% call(slot) vf_cta_section(
+    title_text="Bring local AI inference to your Ubuntu fleet.",
+    variant="default",
+    layout="100",
+    blocks=[{"type": "cta", "item": {"type": "html", "content": cta_link}}]
+  ) %}
+  {% endcall %}
+
+  {{ vf_blog(
+    title={
+      "text": "Further reading",
+      "link_attrs": {"href": "https://canonical.com/blog/tag/ai"}
+    },
+    template_config={"enabled": true, "layout": "4-blocks"},
+    padding="deep"
+  ) }}
+
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
+    canonicalLatestNews.fetchLatestNews({
+      imageClasses: ["p-image-container__image"],
+      limit: 4,
+      articlesContainerSelector: "#articles",
+      articleTemplateSelector: "#template",
+      excerptLength: 180,
+      gtmEventLabel: "Further reading",
+      tagId: 4062
+    });
+  </script>
+
+  {{ load_form("/ai/inference-snaps", isModal=true) | safe }}
+{% endblock content %}

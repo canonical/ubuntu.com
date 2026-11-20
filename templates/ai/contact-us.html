@@ -49,6 +49,8 @@
         introText="Fill in your details below and a member of our sales team will be in touch.",
         lpId="6279",
         returnUrl="/ai/thank-you?product=ai-features") | safe }}
+  {% elif product == 'ai-inference-snaps' %}
+    {{ load_form("/ai/inference-snaps") | safe }}
   {% else %}
     {{ load_form("/default-contact-us-devices", 5917,
         title="Contact us about Artificial Intelligence",
