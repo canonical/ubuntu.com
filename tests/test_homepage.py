@@ -147,13 +147,14 @@ class TestHomepageRender(VCRTestCase):
         The takeover position A/B test is on the page, switched off
         """
 
-        script = self.get_soup().find(
-            "script", string=re.compile("takeover position")
-        )
-        self.assertIsNotNone(script)
+        soup = self.get_soup()
+        script = soup.find("script", string=re.compile("takeover position"))
         self.assertIn("const takeoverSwitch = false;", script.string)
-        # It has to run straight after the block it moves, before paint
-        self.assertEqual(script.find_previous("section")["id"], "takeover")
+        # The group is picked before the hero, so it is never painted first
+        self.assertIn("js-hero", script.find_next("section")["class"])
+        # The block is moved straight after it is parsed
+        move = soup.find("script", string=re.compile("placeTakeover\\?"))
+        self.assertEqual(move.find_previous("section")["id"], "takeover")
 
     def test_hero(self):
         """

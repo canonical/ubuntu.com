@@ -78,14 +78,30 @@ test("a new visitor is assigned a group and keeps it", async ({ page }) => {
   expect(days).toBeLessThan(15);
 });
 
-test("no group is assigned without analytics consent", async ({ page }) => {
+test("nothing is saved or reported without analytics consent", async ({
+  page,
+}) => {
   await openHomepage(page, { control_or_variant: "variant" });
 
-  expect(await takeoverIsFirst(page)).toBe(false);
   expect(await testEvents(page)).toEqual([]);
   expect(await page.evaluate(() => document.cookie)).not.toContain(
     "control_or_variant",
   );
   await expect(page.locator("#takeover-primary-url")).toBeVisible();
   await expect(page.locator("#takeover-secondary-url")).toBeVisible();
+});
+
+test("accepting cookies keeps the group already on screen", async ({
+  page,
+}) => {
+  await openHomepage(page, {});
+  const group = (await takeoverIsFirst(page)) ? "variant" : "control";
+
+  await page.locator("#cookie-policy-button-accept-all").click();
+
+  await expect(page.locator(`#${group}-takeover-primary-url`)).toBeVisible();
+  expect(await testEvents(page)).toMatchObject([{ control_or_variant: group }]);
+  expect(await page.evaluate(() => document.cookie)).toContain(
+    `control_or_variant=${group}`,
+  );
 });
