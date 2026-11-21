@@ -1,0 +1,32 @@
+{
+  "name": "ubuntu.com",
+  "image": "mcr.microsoft.com/devcontainers/base:3.0.13-ubuntu22.04",
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "PATH": "/home/vscode/.local/share/mise/shims:/home/vscode/.local/bin:${containerEnv:PATH}"
+  },
+  "onCreateCommand": "bash .devcontainer/setup.sh",
+  "updateContentCommand": "task build",
+  "forwardPorts": [8001],
+  "portsAttributes": {
+    "8001": {
+      "label": "ubuntu.com",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "dbaeumer.vscode-eslint",
+        "EditorConfig.EditorConfig",
+        "stylelint.vscode-stylelint",
+        "esbenp.prettier-vscode",
+        "monosans.djlint"
+      ]
+    }
+  }
+}
