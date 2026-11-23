@@ -26,8 +26,6 @@
       </style>
     </noscript>
 
-    {% include "home/_hero.html" %}
-    {% include "home/_latest.html" %}
     {# Takeover position A/B test: the variant group sees the Latest block above the hero #}
     <script nonce="{{ csp_nonce }}">
       (function() {
@@ -35,45 +33,71 @@
         const cookieName = "control_or_variant";
         const readCookie = (name) =>
           document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"))?.[2];
+        const consented = () => ["all", "performance"].includes(readCookie("_cookies_accepted"));
 
-        // Like user_id, a group is only assigned after analytics consent
-        const consent = readCookie("_cookies_accepted");
-        if (!takeoverSwitch || !["all", "performance"].includes(consent)) {
+        // Like user_id, the group is only saved and reported after analytics consent
+        if (!takeoverSwitch || !consented()) {
           document.cookie = cookieName + "=; max-age=0; path=/";
-          return;
         }
+        if (!takeoverSwitch) return;
 
+        // Before consent nothing is saved, so every load picks a group again
         let group = readCookie(cookieName);
         if (group !== "control" && group !== "variant") {
           group = Math.random() < 0.5 ? "control" : "variant";
-          document.cookie = cookieName + "=" + group + "; max-age=1209600; path=/";
         }
 
-        const hero = document.querySelector(".js-hero");
-        const takeover = document.getElementById("takeover");
-        if (!hero || !takeover) return;
-
-        // Marketing tracks each individual group's clicks by these ids in GTM
-        for (const link of takeover.querySelectorAll("#takeover-ctas a")) {
-          link.id = group + "-" + link.id;
-        }
-
+        // Safari can paint the hero before the block is moved above it, so hide it until then
+        const showHero = () => document.body.classList.remove("is-takeover-pending");
         if (group === "variant") {
-          // Moving the element keeps the tab order the same as the visual order
-          hero.before(takeover);
-          takeover.insertAdjacentHTML(
-            "afterend",
-            '<div class="p-section--shallow"><div class="u-fixed-width"><hr class="p-rule" /></div></div>',
-          );
+          document.body.classList.add("is-takeover-pending");
+          document.addEventListener("DOMContentLoaded", showHero);
         }
 
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: "test",
-          test_type: "takeover position",
-          control_or_variant: group,
-        });
+        // Called straight after the Latest block, once both elements exist
+        window.placeTakeover = () => {
+          const hero = document.querySelector(".js-hero");
+          const takeover = document.getElementById("takeover");
+          if (!hero || !takeover) return showHero();
+
+          if (group === "variant") {
+            // Moving the element keeps the tab order the same as the visual order
+            hero.before(takeover);
+            takeover.insertAdjacentHTML(
+              "afterend",
+              '<div class="p-section--shallow"><div class="u-fixed-width"><hr class="p-rule" /></div></div>',
+            );
+            showHero();
+          }
+
+          const record = () => {
+            if (readCookie(cookieName) !== group) {
+              document.cookie = cookieName + "=" + group + "; max-age=1209600; path=/";
+            }
+            // Marketing tracks each individual group's clicks by these ids in GTM
+            for (const link of takeover.querySelectorAll("#takeover-ctas a")) {
+              link.id = group + "-" + link.id;
+            }
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+              event: "test",
+              test_type: "takeover position",
+              control_or_variant: group,
+            });
+          };
+
+          // A visitor who accepts on this page keeps the group already on screen
+          if (consented()) record();
+          else document.addEventListener("analytics-consent", record, {
+            once: true
+          });
+        };
       })();
+    </script>
+    {% include "home/_hero.html" %}
+    {% include "home/_latest.html" %}
+    <script nonce="{{ csp_nonce }}">
+      window.placeTakeover?.();
     </script>
 
     <div class="p-section">

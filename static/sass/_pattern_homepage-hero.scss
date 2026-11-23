@@ -43,6 +43,11 @@
     }
   }
 
+  // Takeover position test: the hero stays hidden until the block is above it
+  &.is-takeover-pending .p-hero {
+    display: none;
+  }
+
   // Takeover position test variant: the block is first, so the gaps swap
   .p-latest-block:has(~ .p-hero) {
     padding-top: $spv--strip-regular * 0.5;
