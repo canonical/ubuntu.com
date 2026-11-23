@@ -142,6 +142,20 @@ class TestHomepageRender(VCRTestCase):
         ]:
             self.assertFalse(removed in html, f"Still present: {removed}")
 
+    def test_takeover_position_test_is_switched_on(self):
+        """
+        The takeover position A/B test is on the page, switched on
+        """
+
+        soup = self.get_soup()
+        script = soup.find("script", string=re.compile("takeover position"))
+        self.assertIn("const takeoverSwitch = true;", script.string)
+        # The group is picked before the hero, so it is never painted first
+        self.assertIn("js-hero", script.find_next("section")["class"])
+        # The block is moved straight after it is parsed
+        move = soup.find("script", string=re.compile("placeTakeover\\?"))
+        self.assertEqual(move.find_previous("section")["id"], "takeover")
+
     def test_hero(self):
         """
         The hero holds the page's only h1, and its mock desktop is hidden
