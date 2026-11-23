@@ -46,7 +46,7 @@
     ) -%}
     {% endcall -%}
 
-    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
+    {%- call(slot) vf_tiered_list(padding="deep", is_list_full_width_on_tablet=true) -%}
         {%- if slot == 'title' -%}
             <h2>Get started with Ubuntu today</h2>
         {%- endif -%}
