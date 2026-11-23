@@ -29,7 +29,7 @@
     {# Takeover position A/B test: the variant group sees the Latest block above the hero #}
     <script nonce="{{ csp_nonce }}">
       (function() {
-        const takeoverSwitch = false;
+        const takeoverSwitch = true;
         const cookieName = "control_or_variant";
         const readCookie = (name) =>
           document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"))?.[2];

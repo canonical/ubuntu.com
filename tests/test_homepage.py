@@ -142,14 +142,14 @@ class TestHomepageRender(VCRTestCase):
         ]:
             self.assertFalse(removed in html, f"Still present: {removed}")
 
-    def test_takeover_position_test_ships_switched_off(self):
+    def test_takeover_position_test_is_switched_on(self):
         """
-        The takeover position A/B test is on the page, switched off
+        The takeover position A/B test is on the page, switched on
         """
 
         soup = self.get_soup()
         script = soup.find("script", string=re.compile("takeover position"))
-        self.assertIn("const takeoverSwitch = false;", script.string)
+        self.assertIn("const takeoverSwitch = true;", script.string)
         # The group is picked before the hero, so it is never painted first
         self.assertIn("js-hero", script.find_next("section")["class"])
         # The block is moved straight after it is parsed
