@@ -1,4 +1,4 @@
-{% extends "community/_base_community.html" %}
+{% extends "templates/base.html" %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
@@ -19,7 +19,7 @@ meta_copydoc %}
   {% if not(no_dark == True) %}is-dark{% endif %} developer-diaries
 {% endblock body_class %}
 
-{% block content %}
+{% block outer_content %}
 
   {% call(slot) vf_hero(
     title_text='Developer diaries',
@@ -80,14 +80,14 @@ meta_copydoc %}
         {% if articles %}
           <div class="grid-row">
             {% for article in articles %}
-              {% include "community/developer-diaries/_article-card.html" %}
+              {% include "developer-diaries/_article-card.html" %}
             {% endfor %}
           </div>
         {% else %}
           <p>No articles match these topics yet.</p>
         {% endif %}
 
-        {% include "community/developer-diaries/_pagination.html" %}
+        {% include "developer-diaries/_pagination.html" %}
       </div>
     </div>
   </section>
@@ -103,4 +103,4 @@ meta_copydoc %}
   {%- endcall %}
 
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/developer-diaries.js') }}" defer></script>
-{% endblock content %}
+{% endblock outer_content %}
