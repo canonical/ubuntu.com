@@ -56,8 +56,8 @@
           "attrs": {
             "src": "https://assets.ubuntu.com/v1/739e1d52-hero_img.jpg",
             "alt": "",
-            "width": "1200",
-            "height": "500",
+            "width": "1800",
+            "height": "1200",
             "fetchpriority": "high"
           }
         }
@@ -103,7 +103,13 @@
         {
           "title_text": "Install the model and matching engine",
           "contents": [
-            {"type": "code-block", "item": {"is_code_snippet": true, "content": "sudo snap install gemma4"}},
+            {
+              "type": "description",
+              "item": {
+                "type": "html",
+                "content": '<pre class="u-no-margin--bottom"><code>sudo snap install gemma4</code></pre>'
+              }
+            },
             {
               "type": "description",
               "item": {
@@ -116,7 +122,13 @@
         {
           "title_text": "Check services and available endpoints",
           "contents": [
-            {"type": "code-block", "item": {"is_code_snippet": true, "content": "gemma4 status"}},
+            {
+              "type": "description",
+              "item": {
+                "type": "html",
+                "content": '<pre class="u-no-margin--bottom"><code>gemma4 status</code></pre>'
+              }
+            },
             {"type": "description", "item": {"type": "html", "content": services_and_available_endpoints}}
           ]
         }
