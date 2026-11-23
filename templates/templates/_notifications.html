@@ -1,55 +1,56 @@
-<div id="success" class="p-popup-notification">
+<div id="notifications">
+<div id="success" class="p-popup-notification" popover="manual">
   <div class="p-notification--positive u-no-margin--bottom">
     <div class="p-notification__content">
       <p class="p-notification__message">
         Your submission was sent successfully!
-        <a href="#" data-js-back><i class="p-notification__close">Close</i></a>
+        <button type="button" class="p-notification__close" popovertarget="success" popovertargetaction="hide">Close</button>
       </p>
     </div>
   </div>
 </div>
-<div id="contact-form-success" class="p-popup-notification">
+<div id="contact-form-success" class="p-popup-notification" popover="manual">
   <div class="p-notification--positive u-no-margin--bottom">
     <div class="p-notification__content">
       <p class="p-notification__message">
         Thank you for contacting us. A member of our team will be in touch shortly.
-        <a href="#" data-js-back><i class="p-notification__close">Close</i></a>
+        <button type="button" class="p-notification__close" popovertarget="contact-form-success" popovertargetaction="hide">Close</button>
       </p>
     </div>
   </div>
 </div>
-<div id="unsubscribed" class="p-popup-notification">
+<div id="unsubscribed" class="p-popup-notification" popover="manual">
   <div class="p-notification--positive u-no-margin--bottom">
     <div class="p-notification__content">
       <p class="p-notification__message">
         You have successfully unsubscribed!
-        <a href="#" data-js-back><i class="p-notification__close">Close</i></a>
+        <button type="button" class="p-notification__close" popovertarget="unsubscribed" popovertargetaction="hide">Close</button>
       </p>
     </div>
   </div>
 </div>
-<div id="newsletter-signup" class="p-popup-notification">
+<div id="newsletter-signup" class="p-popup-notification" popover="manual">
   <div class="p-notification--positive u-no-margin--bottom">
     <div class="p-notification__content">
       <p class="p-notification__message">
         Thank you for signing up for our newsletter!
         <br />
         In these regular emails you will find the latest updates about
-        Ubuntu and upcoming events where you can meet our team.<a href="#" data-js-back><i class="p-notification__close">Close</i></a>
+        Ubuntu and upcoming events where you can meet our team. <button type="button" class="p-notification__close" popovertarget="newsletter-signup" popovertargetaction="hide">Close</button>
       </p>
     </div>
   </div>
 </div>
-<div id="updated" class="p-popup-notification">
+<div id="updated" class="p-popup-notification" popover="manual">
   <div class="p-notification--positive u-no-margin--bottom">
     <div class="p-notification__content">
       <p class="p-notification__message">
-        Your preferences have been successfully updated. <a href="#" data-js-back><i class="p-notification__close">Close notification</i></a>
+        Your preferences have been successfully updated. <button type="button" class="p-notification__close" popovertarget="updated" popovertargetaction="hide">Close notification</button>
       </p>
     </div>
   </div>
 </div>
-<div id="contact-form-fail" class="p-popup-notification">
+<div id="contact-form-fail" class="p-popup-notification" popover="manual">
   <div class="p-notification--negative u-no-margin--bottom">
     <div class="p-notification__content">
       <p class="p-notification__message">
@@ -60,8 +61,10 @@
           Please try again or 
           <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml">file a bug report.</a>
         {% endwith %}
-        <a href="#" data-js-back><i class="p-notification__close">Close</i></a>
+        <button type="button" class="p-notification__close" popovertarget="contact-form-fail" popovertargetaction="hide">Close</button>
       </p>
     </div>
   </div>
+</div>
+<div id="notification-announcement" class="u-off-screen" aria-live="polite" aria-atomic="true"></div>
 </div>
