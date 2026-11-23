@@ -20,27 +20,33 @@
 {% block content %}
     {% call(slot) vf_hero(
         title_text='Ubuntu Server for Huawei Kunpeng',
-        layout='50/50'
-        ) -%}
-        {%- if slot == 'description' -%}
-            <p>
-                Ubuntu Server for Huawei Kunpeng brings an optimized Ubuntu Server image to the Huawei Kunpeng SoC platform, opening the door to Huawei’s hardware acceleration and advanced microarchitectures.
-            </p>
-            <p>
-                This custom image fully supports Huawei Kunpeng BoostKit and its specific hardware ecosystem, including specialized network interface cards (NICs) and storage. The Kunpeng platform is designed for building out workloads in the data center, telecommunications, database, and AI spaces. With its unique deployment toolset (including Juju and MAAS), Ubuntu makes the management of those workloads straightforward.
-            </p>
-            <p>
-                Starting with Ubuntu 24.04 LTS, the Huawei Kunpeng 950 is supported.
-            </p>
-            <p>This is the custom ISO Beta image of the Ubuntu Server installer for engineering preview and demo purposes. The Certified version is coming soon.</p>
-        {%- endif -%}
-        {%- if slot == 'cta' -%}
-            <a class="p-button--positive"
-               href="https://silicon.canonical.com/huawei/kunpeng/releases/noble/24.04-beta/server/kunpeng-noble-live-server-arm64.iso">Download 24.04.5 LTS</a>
-        {%- endif -%}
-    {%- endcall %}
+        layout='50/50',
+        blocks=[
+            {
+                "type": "description",
+                "padding": "shallow",
+                "item": {
+                    "type": "html",
+                    "content": "<p>Ubuntu Server for Huawei Kunpeng brings an optimized Ubuntu Server image to the Huawei Kunpeng SoC platform, opening the door to Huawei’s hardware acceleration and advanced microarchitectures.</p><p>This custom image fully supports Huawei Kunpeng BoostKit and its specific hardware ecosystem, including specialized network interface cards (NICs) and storage. The Kunpeng platform is designed for building out workloads in the data center, telecommunications, database, and AI spaces. With its unique deployment toolset (including Juju and MAAS), Ubuntu makes the management of those workloads straightforward.</p><p>Starting with Ubuntu 24.04 LTS, the Huawei Kunpeng 950 is supported.</p><p>This is the custom ISO Beta image of the Ubuntu Server installer for engineering preview and demo purposes. The Certified version is coming soon.</p>"
+                }
+            },
+            {
+                "type": "cta-block",
+                "padding": "shallow",
+                "item": {
+                    "primary": {
+                        "content_html": "Download 24.04.5 LTS",
+                        "attrs": {
+                            "href": "https://silicon.canonical.com/huawei/kunpeng/releases/noble/24.04-beta/server/kunpeng-noble-live-server-arm64.iso"
+                        }
+                    }
+                }
+            }
+        ]
+    ) -%}
+    {% endcall -%}
 
-    {%- call(slot) vf_tiered_list(padding="deep", is_list_full_width_on_tablet=true) -%}
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
         {%- if slot == 'title' -%}
             <h2>Get started with Ubuntu today</h2>
         {%- endif -%}
