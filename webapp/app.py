@@ -47,6 +47,7 @@ from webapp import llms
 from webapp.certified.views import certified_routes
 from webapp.constants import CACHE_TTL
 from webapp.handlers import init_handlers
+from webapp.trailing_slash import init_trailing_slash_redirects
 from webapp.login import login_handler, logout, user_info
 from webapp.decorators import login_required
 from webapp.security.views import (
@@ -344,6 +345,7 @@ if sentry_dsn:
     )
 
 init_handlers(app)
+init_trailing_slash_redirects(app)
 
 
 # Prepare forms

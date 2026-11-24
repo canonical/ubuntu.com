@@ -84,6 +84,7 @@ All CI checks run on PRs via GitHub Actions (`.github/workflows/`).
 | `navigation.yaml`   | Site nav structure and breadcrumbs                 |
 | `releases.yaml`     | Ubuntu release metadata                            |
 | `redirects.yaml`    | HTTP 302 URL redirects                             |
+| `permanent-redirects.yaml` | HTTP 301 URL redirects                      |
 | `deleted.yaml`      | HTTP 310 deleted responses                         |
 | `konf/site.yaml`    | Kubernetes deployment manifests                    |
 | `charm/`            | Juju/Kubernetes charm config                       |

@@ -20,6 +20,7 @@ Merging a pull request (PR) into the `main` branch will automatically trigger a 
 ## File structure
 
 - [`./redirects.yaml`](rerdirects.yaml): A file defining URL paths for 302 redirects
+- [`./permanent-redirects.yaml`](permanent-redirects.yaml): A file defining URL paths for 301 redirects, applied after `redirects.yaml`
 - [`./deleted.yaml`](deleted.yaml): A file defining URL paths for 310 deleted responses
 - [`./entrypoint`](entrypoint): The commands for running the application with Gunicorn. This is used within `Dockerfile` for running the production site.
 - [`./Dockerfile`](Dockerfile): Used by the [production Jenkins job](https://jenkins.canonical.com/webteam/job/ubuntu.com) for building the production docker image. See [our standard deployment flow](https://discourse.canonical.com/t/how-the-standard-website-deployment-flow-is-set-up-in-github-jenkins-and-kubernetes/2112).
