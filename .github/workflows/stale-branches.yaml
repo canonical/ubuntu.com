@@ -8,6 +8,7 @@ name: Clean up stale branches
 #   branches are kept (and labelled) so the PR can be reopened.
 # Never touches the default branch, protected branches, bot branches,
 # branches used as the base of an open PR, or branches named in a workflow.
+# Branches and PRs that get new commits while the job runs are left alone.
 # Every deleted branch is listed in the job summary with its last commit
 # SHA so it can be restored.
 
@@ -117,10 +118,14 @@ jobs:
               query ($owner: String!, $repo: String!, $base: String!,
                      $label: String!, $cursor: String) {
                 repository(owner: $owner, name: $repo) {
+                  id
                   refs(refPrefix: "refs/heads/", first: 50, after: $cursor) {
                     pageInfo { hasNextPage endCursor }
                     nodes {
                       name
+                      # This branch is the base and $base is the head, so
+                      # behindBy counts commits on this branch that aren't
+                      # on the default branch.
                       compare(headRef: $base) { behindBy }
                       target { oid ... on Commit { committedDate } }
                       openPrs: associatedPullRequests(
@@ -134,6 +139,7 @@ jobs:
                 }
               }`;
             const branches = [];
+            let repositoryId = null;
             let cursor = null;
             do {
               const { repository } = await github.graphql(query, {
@@ -142,7 +148,9 @@ jobs:
                 base: defaultBranch,
                 label: CLOSED_LABEL,
                 cursor,
+                headers: { "X-Github-Next-Global-ID": "1" },
               });
+              repositoryId = repository.id;
               branches.push(...repository.refs.nodes);
               const { hasNextPage, endCursor } = repository.refs.pageInfo;
               cursor = hasNextPage ? endCursor : null;
@@ -190,8 +198,19 @@ jobs:
               if (openPrs.length > 0) {
                 if (age <= IDLE_PR_DAYS) continue;
                 for (const pr of openPrs) {
-                  core.info(`Closing #${pr.number} (${name}, ${age} days)`);
                   try {
+                    // Skip the PR if its branch got new commits during
+                    // this run.
+                    const { data: current } = await github.rest.pulls.get({
+                      owner,
+                      repo,
+                      pull_number: pr.number,
+                    });
+                    if (current.head.sha !== branch.target.oid) {
+                      core.info(`Skipping #${pr.number}: new commits`);
+                      continue;
+                    }
+                    core.info(`Closing #${pr.number} (${name}, ${age} days)`);
                     if (!dryRun) {
                       await ensureLabel();
                       await github.rest.issues.addLabels({
@@ -234,12 +253,25 @@ jobs:
               core.info(`Deleting ${name} (${reason})`);
               try {
                 if (!dryRun) {
-                  const ref = name
-                    .split("/")
-                    .map(encodeURIComponent)
-                    .join("/");
-                  await github.request(
-                    `DELETE /repos/${owner}/${repo}/git/refs/heads/${ref}`,
+                  // Only deletes the branch if it still points at the
+                  // commit read above, so new pushes are never lost.
+                  await github.graphql(
+                    `mutation ($repositoryId: ID!, $name: GitRefname!,
+                               $before: GitObjectID!) {
+                      updateRefs(input: {
+                        repositoryId: $repositoryId
+                        refUpdates: [{
+                          name: $name
+                          beforeOid: $before
+                          afterOid: "0000000000000000000000000000000000000000"
+                        }]
+                      }) { clientMutationId }
+                    }`,
+                    {
+                      repositoryId,
+                      name: `refs/heads/${name}`,
+                      before: branch.target.oid,
+                    },
                   );
                 }
                 deleted.push({
@@ -249,7 +281,15 @@ jobs:
                   reason,
                 });
               } catch (error) {
-                failed.push(`${name}: ${error.message}`);
+                const path = name.split("/").map(encodeURIComponent).join("/");
+                const { data: ref } = await github
+                  .request(`GET /repos/${owner}/${repo}/git/ref/heads/${path}`)
+                  .catch(() => ({ data: null }));
+                if (ref && ref.object.sha !== branch.target.oid) {
+                  core.info(`Skipping ${name}: new commits`);
+                } else {
+                  failed.push(`${name}: ${error.message}`);
+                }
               }
             }
 
