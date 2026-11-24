@@ -16,6 +16,7 @@ from webapp.shop.api.ua_contracts.models import (
     Invoice,
 )
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
+from webapp.shop.api.ua_contracts.api import UAContractsAPIError
 from webapp.shop.api.ua_contracts.primitives import (
     Account,
     Contract,
@@ -388,3 +389,74 @@ class TestGetAccountUsers(unittest.TestCase):
         self.assertIsInstance(response, List)
         for item in response:
             self.assertIsInstance(item, User)
+
+
+class TestAccountTOS(unittest.TestCase):
+    def test_returns_acceptance(self):
+        session = Session(
+            Response(
+                status_code=200,
+                content={
+                    "acceptedAt": "2026-11-19T10:00:00Z",
+                    "accountID": "aAbBcCdD",
+                    "email": "user@example.com",
+                },
+            )
+        )
+        advantage_mapper = AdvantageMapper(make_client(session))
+
+        response = advantage_mapper.get_account_tos_acceptance("aAbBcCdD")
+
+        self.assertEqual(
+            response,
+            {
+                "accepted": True,
+                "accepted_at": "2026-11-19T10:00:00Z",
+                "email": "user@example.com",
+            },
+        )
+        self.assertEqual(session.request_kwargs["method"], "get")
+        self.assertEqual(
+            session.request_kwargs["url"],
+            "https://1.2.3.4/v1/accounts/aAbBcCdD/tos",
+        )
+
+    def test_not_found_means_not_accepted(self):
+        session = Session(Response(status_code=404, content={}))
+        advantage_mapper = AdvantageMapper(make_client(session))
+
+        response = advantage_mapper.get_account_tos_acceptance("aAbBcCdD")
+
+        self.assertEqual(
+            response,
+            {"accepted": False, "accepted_at": None, "email": None},
+        )
+
+    def test_other_errors_are_raised(self):
+        session = Session(Response(status_code=500, content={}))
+        advantage_mapper = AdvantageMapper(make_client(session))
+
+        with self.assertRaises(UAContractsAPIError):
+            advantage_mapper.get_account_tos_acceptance("aAbBcCdD")
+
+    def test_accept_registers_acceptance(self):
+        session = Session(
+            Response(
+                status_code=200,
+                content={
+                    "acceptedAt": "2026-11-19T10:00:00Z",
+                    "accountID": "aAbBcCdD",
+                    "email": "user@example.com",
+                },
+            )
+        )
+        advantage_mapper = AdvantageMapper(make_client(session))
+
+        response = advantage_mapper.accept_account_tos("aAbBcCdD")
+
+        self.assertTrue(response["accepted"])
+        self.assertEqual(session.request_kwargs["method"], "put")
+        self.assertEqual(
+            session.request_kwargs["url"],
+            "https://1.2.3.4/v1/accounts/aAbBcCdD/tos",
+        )

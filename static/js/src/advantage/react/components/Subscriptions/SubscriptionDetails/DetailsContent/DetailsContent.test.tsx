@@ -1,5 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { render, screen } from "@testing-library/react";
 import { mount } from "enzyme";
+import * as contracts from "advantage/api/contracts";
 import {
   UserSubscriptionMarketplace,
   UserSubscriptionPeriod,
@@ -90,7 +92,7 @@ describe("DetailsContent", () => {
     );
   });
 
-  it("can display the contract token", () => {
+  it("shows the token without asking to accept terms once accepted", () => {
     const contract = userSubscriptionFactory.build();
     const contractToken = contractTokenFactory.build();
     queryClient.setQueryData(["userSubscriptions"], [contract]);
@@ -98,7 +100,12 @@ describe("DetailsContent", () => {
       ["contractToken", contract.contract_id],
       contractToken,
     );
-    const wrapper = mount(
+    queryClient.setQueryData(["accountTOS", contract.account_id], {
+      accepted: true,
+      accepted_at: "2026-11-19T10:00:00Z",
+      email: "user@example.com",
+    });
+    render(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
@@ -106,10 +113,112 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>,
     );
-    expect(wrapper.find(".p-code-snippet").exists()).toBe(true);
-    expect(wrapper.find("pre.p-code-snippet__block--icon").text()).toBe(
-      contractToken.contract_token,
+    expect(
+      screen.queryByRole("dialog", { name: "Accept terms" }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText(contractToken.contract_token)).toBeInTheDocument();
+  });
+
+  it("does not request the token while the terms check is pending", () => {
+    const getContractTokenSpy = jest.spyOn(contracts, "getContractToken");
+    jest
+      .spyOn(contracts, "getAccountTOS")
+      .mockReturnValue(new Promise(() => {}));
+    const contract = userSubscriptionFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
     );
+    expect(getContractTokenSpy).not.toHaveBeenCalled();
+    jest.restoreAllMocks();
+  });
+
+  it("asks to accept the terms and hides the token until accepted", () => {
+    const contract = userSubscriptionFactory.build();
+    const contractToken = contractTokenFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    queryClient.setQueryData(
+      ["contractToken", contract.contract_id],
+      contractToken,
+    );
+    queryClient.setQueryData(["accountTOS", contract.account_id], {
+      accepted: false,
+      accepted_at: null,
+      email: null,
+    });
+    render(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+    expect(
+      screen.getByRole("dialog", { name: "Accept terms" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Review terms" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Token" })).toBeInTheDocument();
+    expect(
+      screen.queryByText(contractToken.contract_token),
+    ).not.toBeInTheDocument();
+  });
+
+  it("does not skip the terms check when the email param is empty", () => {
+    window.history.pushState({}, "", "/pro/dashboard?email=");
+    const getContractTokenSpy = jest.spyOn(contracts, "getContractToken");
+    const getAccountTOSSpy = jest
+      .spyOn(contracts, "getAccountTOS")
+      .mockReturnValue(new Promise(() => {}));
+    const contract = userSubscriptionFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+    expect(getAccountTOSSpy).toHaveBeenCalled();
+    expect(getContractTokenSpy).not.toHaveBeenCalled();
+    jest.restoreAllMocks();
+    window.history.pushState({}, "", "/");
+  });
+
+  it("shows the token when the terms check fails", async () => {
+    queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+    const contractToken = contractTokenFactory.build();
+    jest.spyOn(contracts, "getContractToken").mockResolvedValue(contractToken);
+    jest
+      .spyOn(contracts, "getAccountTOS")
+      .mockResolvedValue({ errors: "Unexpected error" });
+    const contract = userSubscriptionFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+    expect(
+      await screen.findByText(contractToken.contract_token),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("dialog", { name: "Accept terms" }),
+    ).not.toBeInTheDocument();
+    jest.restoreAllMocks();
   });
 
   it("can display the token copied notification", async () => {
@@ -120,6 +229,11 @@ describe("DetailsContent", () => {
       ["contractToken", contract.contract_id],
       contractToken,
     );
+    queryClient.setQueryData(["accountTOS", contract.account_id], {
+      accepted: true,
+      accepted_at: "2026-11-19T10:00:00Z",
+      email: "user@example.com",
+    });
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
@@ -128,7 +242,6 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>,
     );
-
     act(() => {
       wrapper.find("[data-test='contract-token']").simulate("click");
     });
