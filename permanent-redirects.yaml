@@ -1,0 +1,18 @@
+# Permanent (301) redirects, applied after redirects.yaml.
+# Same format as redirects.yaml.
+
+# Roots of the legacy hosts in konf/site.yaml (developer.ubuntu.com,
+# cloud.ubuntu.com, tour.ubuntu.com, certification.ubuntu.com,
+# usn.ubuntu.com). nginx sends the host to a path here, so these must not
+# add a temporary redirect to the chain.
+developer/?: "/desktop/developers"
+public-cloud/?: "/cloud/public-cloud"
+desktop/features/?: "/desktop"
+certification/?: "/certified"
+usn/?: "/security/notices"
+
+# Legacy USN links (usn.ubuntu.com, /usn/USN-1-1, ...) point at notices
+# with any number of digits in the ID, e.g. 127-1, 436-2 and 3717-1
+(usn/)?(USN|usn)-?(?P<page>[0-9]+-[0-9]+)/?: "/security/notices/USN-{page}"
+security/notices/usn/(usn-|USN-)(?P<usn_id>.*)/?: /security/notices/USN-{usn_id}
+security/notices/(usn/)?(?P<usn_id>\d+-\d+)/?: /security/notices/USN-{usn_id}
