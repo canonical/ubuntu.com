@@ -24,9 +24,10 @@ class TestCSPConstants(unittest.TestCase):
     def test_no_unsafe_hashes_in_script_src(self):
         self.assertNotIn("'unsafe-hashes'", CSP["script-src"])
 
-    def test_unsafe_eval_kept_in_script_src(self):
-        # 'unsafe-eval' is intentionally out of scope and retained.
-        self.assertIn("'unsafe-eval'", CSP["script-src"])
+    def test_no_unsafe_eval_in_script_src(self):
+        # 'unsafe-eval' permits eval()/new Function(); no first-party code
+        # uses it, so it must not be allowed.
+        self.assertNotIn("'unsafe-eval'", CSP["script-src"])
 
     def test_nonced_directives(self):
         self.assertEqual(NONCED_DIRECTIVES, ("script-src", "script-src-elem"))

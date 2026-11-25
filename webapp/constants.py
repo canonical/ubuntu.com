@@ -248,7 +248,6 @@ CSP = {
         "*.youtube.com",
         "*.google.com",
         "*.livechat-static.com",
-        "'unsafe-eval'",
     ],
     "connect-src": [
         "'self'",
