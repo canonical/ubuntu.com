@@ -25,8 +25,8 @@
   {% endcall -%}
 
   <section class="p-section">
-    <div class="grid-row">
-      <table aria-label="Vanilla framework table example">
+    <div class="grid-row u-table-scroll--medium u-table-scroll--small">
+      <table aria-label="Ubuntu documentation directory by platform and use case">
         <thead>
           <tr>
             <th></th>
@@ -200,9 +200,9 @@
 
   {% call(slot) vf_equal_heights(
     title_text="Our products",
-    image_aspect_ratio_large="1:1",
-    image_aspect_ratio_small="1:1",
-    image_aspect_ratio_medium="1:1",
+    image_aspect_ratio_large="auto",
+    image_aspect_ratio_small="auto",
+    image_aspect_ratio_medium="auto",
     items=[
       {
         "title_text": "MAAS",
@@ -279,7 +279,7 @@
             hi_def=True,
             loading="auto|lazy"
             ) | safe,
-        "description_html": "<p>The Enterprise Store provides an on-premise edge proxy to the Snap Store for your devices</p>",
+        "description_html": "<p>The Enterprise Store provides an on premises edge proxy to the Snap Store for your devices</p>",
       },
       {
         "title_link_attrs": {'href': 'https://mir-server.io/doc/'},
@@ -305,7 +305,7 @@
             hi_def=True,
             loading="auto|lazy"
             ) | safe,
-        "description_html": "<p>Ubuntu virtual machines on demand for Linux, MacOS and Windows</p>",
+        "description_html": "<p>Ubuntu virtual machines on demand for Linux, macOS and Windows</p>",
       },
       {
         "title_link_attrs": {'href': 'https://cloudinit.readthedocs.io/en/latest/'},
@@ -370,7 +370,7 @@
             hi_def=True,
             loading="auto|lazy"
             ) | safe,
-        "description_html": "<p>Network abstraction for Linux to simplify and standardise complex network configuration</p>",
+        "description_html": "<p>Network abstraction for Linux to simplify and standardize complex network configuration</p>",
       },
       {
         "title_link_attrs": {'href': 'https://ubuntu.com/openstack/docs'},
@@ -482,9 +482,9 @@
 
   {% call(slot) vf_equal_heights(
     title_text="The Ubuntu OS",
-    image_aspect_ratio_large="1:1",
-    image_aspect_ratio_small="1:1",
-    image_aspect_ratio_medium="1:1",
+    image_aspect_ratio_large="auto",
+    image_aspect_ratio_small="auto",
+    image_aspect_ratio_medium="auto",
     attrs={'class': 'p-section--deep'},
     items=[
       {
@@ -550,7 +550,7 @@
             hi_def=True,
             loading="auto|lazy"
             ) | safe,
-        "description_html": "<p>Secure and customised Ubuntu images for all the major cloud providers.</p>",
+        "description_html": "<p>Secure and customized Ubuntu images for all the major cloud providers.</p>",
       },
       {
         "title_text": "Real-time Ubuntu",
