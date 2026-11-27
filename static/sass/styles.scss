@@ -1715,6 +1715,11 @@ ol.p-list--divided .p-list__item::before {
   }
 }
 
+// Restore the row border Vanilla drops on the first row of each extra tbody
+.p-table--row-groups tbody + tbody tr:first-child {
+  border-top: 1px solid $colors--theme--border-low-contrast;
+}
+
 .u-align-last--logo {
   @media screen and (max-width: $breakpoint-large - 1) {
     .p-logo-section__item {
