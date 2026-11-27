@@ -2,11 +2,47 @@ import unittest
 import os
 import json
 import sentry_sdk
+from requests import HTTPError, Response
 from unittest.mock import Mock, patch
 from urllib.parse import parse_qs, urlparse
 
 from webapp.app import app
+from webapp.marketo import MarketoAPI
 from tests.helpers import MarketoFormTestCase
+
+
+class TestMarketoAPI(unittest.TestCase):
+    def setUp(self):
+        self.session = Mock(headers={})
+        self.api = MarketoAPI(
+            "https://example.com", "client-id", "dummy-secret", self.session
+        )
+
+    def test_identity_error_names_status_but_not_credentials(self):
+        response = Response()
+        response.status_code = 401
+        response.url = "https://example.com/token?client_secret=dummy-secret"
+        self.session.get.return_value = response
+        with self.assertRaisesRegex(HTTPError, "Marketo identity.*401") as err:
+            self.api.submit_form({})
+        self.assertNotIn(self.api.client_secret, str(err.exception))
+
+    def test_http_error_surfaces_before_json_parsing_even_after_retry(self):
+        self.api.token = "expired"
+        auth = self.session.get.return_value
+        auth.status_code = 200
+        auth.json.return_value = {"access_token": "new"}
+        unavailable = Response()
+        unavailable.status_code = 503
+        for initial_status in (503, 401, 403):
+            with self.subTest(initial_status=initial_status):
+                responses = [unavailable]
+                if initial_status != 503:
+                    responses.insert(0, Mock(status_code=initial_status))
+                self.session.request.side_effect = responses
+                with self.assertRaises(HTTPError) as err:
+                    self.api.submit_form({})
+                self.assertIs(err.exception.response, unavailable)
 
 
 class TestFormGenerator(MarketoFormTestCase):
@@ -247,8 +283,12 @@ class TestMarketoSubmit(unittest.TestCase):
             "webapp.views.marketo_sentry_report"
         ) as mock_sentry:
             mock_submit.side_effect = [
-                self._mock_response(payload_response),
-                self._mock_response(enrichment_response),
+                (
+                    body
+                    if isinstance(body, Exception)
+                    else self._mock_response(body)
+                )
+                for body in (payload_response, enrichment_response)
             ]
             http_response = self.client.post(
                 "/marketo/submit",
@@ -326,6 +366,16 @@ class TestMarketoSubmit(unittest.TestCase):
         )
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("contact-form-fail", http_response.headers["Location"])
+
+    def test_enrichment_http_error_reports_one_exception_and_redirects(self):
+        error = HTTPError("503 Service Unavailable")
+        response, report = self._submit(
+            {"success": True, "result": [{"status": "created"}]}, error
+        )
+        report.assert_called_once()
+        self.assertIs(report.call_args.kwargs["exception"], error)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("contact-form-fail", response.headers["Location"])
 
     def test_html_injection_attempt_blocked_without_marketo_call(self):
         """
