@@ -3,6 +3,18 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
 
+{% block title %}
+  Ubuntu Documentation
+{% endblock %}
+
+{% block meta_description %}
+  The docs directory for all Ubuntu operating systems and products.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Nij0iJC1i62kPYWXjWBDAilva6jUncIdGyUMDyOx3ig/edit
+{% endblock meta_copydoc %}
+
 {% block body_class %}
   is-paper
 {% endblock body_class %}
@@ -26,20 +38,21 @@
 
   <section class="p-section">
     <div class="grid-row u-table-scroll--medium u-table-scroll--small">
-      <table aria-label="Ubuntu documentation directory by platform and use case">
+      <table class="p-table--row-groups">
+        <caption class="u-off-screen">Ubuntu documentation directory by platform and use case</caption>
         <thead>
           <tr>
-            <th></th>
-            <th>IoT/Edge</th>
-            <th>Embedded</th>
-            <th>Workstation</th>
-            <th>Containers and VMs</th>
-            <th>Data center</th>
-            <th>Cloud</th>
+            <th scope="col"><span class="u-off-screen">Category</span></th>
+            <th scope="col">IoT/Edge</th>
+            <th scope="col">Embedded</th>
+            <th scope="col">Workstation</th>
+            <th scope="col">Containers and VMs</th>
+            <th scope="col">Data center</th>
+            <th scope="col">Cloud</th>
           </tr>
         </thead>
+        <!-- PLATFORMS -->
         <tbody>
-          <!-- PLATFORMS -->
           <tr>
             <th rowspan="5" scope="rowgroup">Platform</th>
             <td></td>
@@ -81,8 +94,10 @@
             <td><a href="/kubernetes/charmed-k8s/docs">Charmed Kubernetes</a></td>
             <td></td>
           </tr>
-          <!-- Management -->
-          <tr >
+        </tbody>
+        <!-- Management -->
+        <tbody>
+          <tr>
             <th rowspan="5" scope="rowgroup">Management</th>
             <td><a href="/docs/pebble/">Pebble</a></td>
             <td><a href="https://snapcraft.io/docs">Snap</a></td>
@@ -104,7 +119,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><a href="/docs/launchpad//">Launchpad</a></td>
+            <td><a href="/docs/launchpad/">Launchpad</a></td>
             <td></td>
           </tr>
           <tr>
@@ -123,8 +138,10 @@
             <td><a href="https://canonical.com/observability/docs/">Observability</a></td>
             <td></td>
           </tr>
-          <!-- Store -->
-          <tr >
+        </tbody>
+        <!-- Store -->
+        <tbody>
+          <tr>
             <th rowspan="2" scope="rowgroup">Stores</th>
             <td></td>
             <td><a href="https://snapcraft.io/docs">Snap Store</a></td>
@@ -141,8 +158,10 @@
             <td></td>
             <td></td>
           </tr>
-          <!-- Apps -->
-          <tr >
+        </tbody>
+        <!-- Apps -->
+        <tbody>
+          <tr>
             <th rowspan="5" scope="rowgroup">Apps</th>
             <td></td>
             <td><a href="https://canonical-matter.readthedocs-hosted.com/en/latest/">Matter on Ubuntu</a></td>
@@ -183,9 +202,11 @@
             <td><a href="https://canonical.com/microstack/docs">MicroStack</a></td>
             <td></td>
           </tr>
-          <!-- Tools -->
-          <tr >
-            <th scope="row">Tools</th>
+        </tbody>
+        <!-- Tools -->
+        <tbody>
+          <tr>
+            <th scope="rowgroup">Tools</th>
             <td></td>
             <td><a href="/docs/snapcraft/">Snapcraft</a></td>
             <td><a href="/chisel/docs/latest/">Chisel</a></td>
@@ -208,7 +229,7 @@
         "title_text": "MAAS",
         "title_link_attrs": {'href': 'https://canonical.com/maas/docs'},
         "image_html":  image(url="https://assets.ubuntu.com/v1/02358d58-maas_logo_docs.png",
-            alt="",
+            alt="MAAS",
             width="32",
             height="32",
             hi_def=True,
@@ -221,7 +242,7 @@
         "title_text": "Juju",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/69a5b9c7-juju_logo_docs.png",
-            alt="",
+            alt="Juju",
             width="32",
             height="32",
             hi_def=True,
@@ -234,7 +255,7 @@
         "title_text": "Snapcraft",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/52cf57db-snapcraft_logo_docs.png",
-            alt="",
+            alt="Snapcraft",
             width="32",
             height="32",
             hi_def=True,
@@ -247,7 +268,7 @@
         "title_text": "LXD",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/6d20bf67-lxd_logo_docs.png",
-            alt="",
+            alt="LXD",
             width="32",
             height="32",
             hi_def=True,
@@ -260,7 +281,7 @@
         "title_text": "Landscape",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/bae619a8-landscape_logo_docs.png",
-            alt="",
+            alt="Landscape",
             width="32",
             height="32",
             hi_def=True,
@@ -273,7 +294,7 @@
         "title_text": "Enterprise Store",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/132a6320-enterprise_store_logo_docs.png",
-            alt="",
+            alt="Enterprise Store",
             width="32",
             height="32",
             hi_def=True,
@@ -282,11 +303,11 @@
         "description_html": "<p>The Enterprise Store provides an on premises edge proxy to the Snap Store for your devices</p>",
       },
       {
-        "title_link_attrs": {'href': 'https://mir-server.io/doc/'},
+        "title_link_attrs": {'href': 'https://mir-server.io/docs'},
         "title_text": "Mir",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-mir_logo_docs.png",
-            alt="",
+            alt="Mir",
             width="32",
             height="32",
             hi_def=True,
@@ -299,7 +320,7 @@
         "title_text": "Multipass",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d3fb1402-multipass_logo_docs.png",
-            alt="",
+            alt="Multipass",
             width="32",
             height="32",
             hi_def=True,
@@ -312,7 +333,7 @@
         "title_text": "Cloud-init",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-cloud_init_logo_docs.png",
-            alt="",
+            alt="Cloud-init",
             width="32",
             height="32",
             hi_def=True,
@@ -325,7 +346,7 @@
         "title_text": "Dqlite",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-dqlite_logo_docs.png",
-            alt="",
+            alt="Dqlite",
             width="32",
             height="32",
             hi_def=True,
@@ -338,7 +359,7 @@
         "title_text": "MicroK8s",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/8094ba2f-microk8s_logo_docs.png",
-            alt="",
+            alt="MicroK8s",
             width="32",
             height="32",
             hi_def=True,
@@ -351,7 +372,7 @@
         "title_text": "Canonical Kubernetes",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/8094ba2f-canonical_kubernetes_logo_docs.png",
-            alt="",
+            alt="Canonical Kubernetes",
             width="32",
             height="32",
             hi_def=True,
@@ -364,7 +385,7 @@
         "title_text": "Netplan",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/7b4a78bf-netplan_logo_docs.png",
-            alt="",
+            alt="Netplan",
             width="32",
             height="32",
             hi_def=True,
@@ -377,7 +398,7 @@
         "title_text": "Charmed OpenStack",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-charmed_openstack_logo_docs.png",
-            alt="",
+            alt="Charmed OpenStack",
             width="32",
             height="32",
             hi_def=True,
@@ -390,7 +411,7 @@
         "title_text": "MicroStack",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-microstack_logo_docs.png",
-            alt="",
+            alt="MicroStack",
             width="32",
             height="32",
             hi_def=True,
@@ -403,7 +424,7 @@
         "title_text": "Anbox Cloud",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-anbox_cloud_logo_docs.png",
-            alt="",
+            alt="Anbox Cloud",
             width="32",
             height="32",
             hi_def=True,
@@ -416,7 +437,7 @@
         "title_text": "Charmed Kubeflow",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-charmed_kubeflow_logo_docs.png",
-            alt="",
+            alt="Charmed Kubeflow",
             width="32",
             height="32",
             hi_def=True,
@@ -429,7 +450,7 @@
         "title_text": "Charmed MLflow",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-charmed_mlflow_logo_docs.png",
-            alt="",
+            alt="Charmed MLflow",
             width="32",
             height="32",
             hi_def=True,
@@ -442,7 +463,7 @@
         "title_text": "Data Science Stack",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-data_science_stack_logo_docs.png",
-            alt="",
+            alt="Data Science Stack",
             width="32",
             height="32",
             hi_def=True,
@@ -455,7 +476,7 @@
         "title_text": "Rockcraft",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/d25e3293-rockcraft_logo_docs.png",
-            alt="",
+            alt="Rockcraft",
             width="32",
             height="32",
             hi_def=True,
@@ -468,7 +489,7 @@
         "title_text": "Chisel",
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/f2097529-chisel_logo_docs.png",
-            alt="",
+            alt="Chisel",
             width="32",
             height="32",
             hi_def=True,
@@ -492,7 +513,7 @@
         "title_link_attrs": {'href': '/desktop/docs/en/latest/'},
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/fcbeec4b-desktop_logo_docs.png",
-            alt="",
+            alt="Desktop",
             width="32",
             height="32",
             hi_def=True,
@@ -505,7 +526,7 @@
         "title_link_attrs": {'href': '/server/docs'},
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/9e9d0220-server_logo_docs.png",
-            alt="",
+            alt="Server",
             width="32",
             height="32",
             hi_def=True,
@@ -518,7 +539,7 @@
         "title_link_attrs": {'href': 'https://documentation.ubuntu.com/core/'},
         "image_html":  
           image(url="https://assets.ubuntu.com/v1/f2097529-core_logo_docs.png",
-            alt="",
+            alt="Core",
             width="32",
             height="32",
             hi_def=True,
@@ -531,7 +552,7 @@
         "title_link_attrs": {'href': '/developers/docs/'},
         "image_html":
           image(url="https://assets.ubuntu.com/v1/f2097529-ubuntu_for_developers_logo_docs.png",
-            alt="",
+            alt="Ubuntu for developers",
             width="32",
             height="32",
             hi_def=True,
@@ -544,7 +565,7 @@
         "title_link_attrs": {'href': '/cloud/public-cloud/docs/'},
         "image_html":
           image(url="https://assets.ubuntu.com/v1/f2097529-public_cloud_logo_docs.png",
-            alt="",
+            alt="Public Cloud",
             width="32",
             height="32",
             hi_def=True,
@@ -557,7 +578,7 @@
         "title_link_attrs": {'href': '/real-time/docs/'},
         "image_html":
           image(url="https://assets.ubuntu.com/v1/f2097529-real_time_ubuntu_logo_docs.png",
-            alt="",
+            alt="Real-time Ubuntu",
             width="32",
             height="32",
             hi_def=True,
@@ -570,7 +591,7 @@
         "title_link_attrs": {'href': '/hardware/docs/'},
         "image_html":
           image(url="https://assets.ubuntu.com/v1/f2097529-ubuntu_hardware_support_logo_docs.png",
-            alt="",
+            alt="Ubuntu hardware support",
             width="32",
             height="32",
             hi_def=True,
@@ -583,7 +604,7 @@
         "title_link_attrs": {'href': '/project/docs/'},
         "image_html":
           image(url="https://assets.ubuntu.com/v1/f2097529-ubuntu_project_logo_docs.png",
-            alt="",
+            alt="Ubuntu Project",
             width="32",
             height="32",
             hi_def=True,
