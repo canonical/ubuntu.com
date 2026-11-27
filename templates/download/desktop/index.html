@@ -95,11 +95,11 @@
           </p>
         </div>
         <!-- Start tab container -->
-        <nav class="p-tabs js-tabbed-content">
+        <nav class="p-tabs js-tabbed-content" data-tab-order="sequential">
           <ul class="p-tabs__list u-no-margin--bottom"
               role="tablist"
               data-maintain-hash="true">
-            <li class="p-tabs__item">
+            <li class="p-tabs__item" role="presentation">
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="true"
@@ -107,7 +107,7 @@
                  href="#release-notes-{{ releases_yaml.lts.slug }}"
                  aria-controls="release-notes-{{ releases_yaml.lts.slug }}">What's new</a>
             </li>
-            <li class="p-tabs__item">
+            <li class="p-tabs__item" role="presentation">
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="false"
@@ -116,7 +116,7 @@
                  aria-controls="system-requirements-{{ releases_yaml.lts.slug }}"
                  tabindex="-1">System requirements</a>
             </li>
-            <li class="p-tabs__item">
+            <li class="p-tabs__item" role="presentation">
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="false"
@@ -260,11 +260,11 @@
             </p>
           </div>
           <!-- Start tab container -->
-          <nav class="p-tabs js-tabbed-content">
+          <nav class="p-tabs js-tabbed-content" data-tab-order="sequential">
             <ul class="p-tabs__list u-no-margin--bottom"
                 role="tablist"
                 data-maintain-hash="true">
-              <li class="p-tabs__item">
+              <li class="p-tabs__item" role="presentation">
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="true"
@@ -272,7 +272,7 @@
                    href="#release-notes-{{ releases_yaml.latest.slug }}"
                    aria-controls="release-notes-{{ releases_yaml.latest.slug }}">What's new</a>
               </li>
-              <li class="p-tabs__item">
+              <li class="p-tabs__item" role="presentation">
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="false"
@@ -281,7 +281,7 @@
                    aria-controls="system-requirements-{{ releases_yaml.latest.slug }}"
                    tabindex="-1">System requirements</a>
               </li>
-              <li class="p-tabs__item">
+              <li class="p-tabs__item" role="presentation">
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="false"
@@ -311,7 +311,7 @@
             <ul class="u-responsive-realign p-inline-list">
               <li class="p-inline-list__item">
                 <a href="{{ releases_yaml.latest.blog_post_url }}"
-                   aria-label="{{ releases_yaml.latest.full_version }} deep dive">Press release&nbsp;&rsaquo;</a>
+                   aria-label="{{ releases_yaml.latest.full_version }} press release">Press release&nbsp;&rsaquo;</a>
               </li>
               <li class="p-inline-list__item">
                 <a href="{{ releases_yaml.latest.release_notes_url }}"

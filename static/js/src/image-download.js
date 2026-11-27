@@ -64,12 +64,21 @@ function startDownload(mirrors, imagePath) {
 
 /**
  * Kick off a download link
- * after a certain delay in milliseconds
+ * after a certain delay in milliseconds, once the page has loaded.
+ * Navigating before the load event cancels the favicon request.
  */
 function delayStartDownload(downloadLink, delay) {
-  window.setTimeout(function () {
-    window.location.href = downloadLink;
-  }, delay);
+  function startTimer() {
+    window.setTimeout(function () {
+      window.location.href = downloadLink;
+    }, delay);
+  }
+
+  if (document.readyState === "complete") {
+    startTimer();
+  } else {
+    window.addEventListener("load", startTimer, { once: true });
+  }
 }
 
 /**

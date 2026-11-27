@@ -6,7 +6,6 @@ from webapp.certified.helpers import (
     _normalize_categories,
 )
 
-
 FILTER_OPTION_LIMIT = 5
 MEMORY_MIN_GB = 0
 MEMORY_MAX_GB = 1024

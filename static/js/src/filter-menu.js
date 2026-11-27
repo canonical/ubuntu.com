@@ -181,7 +181,9 @@ function setupFilterBar(bar) {
       if (baseline !== undefined) {
         return value !== "" && value !== baseline;
       }
-      return value && value !== "all";
+      return (
+        value && (value !== "all" || toggle.dataset.preserveAll === "true")
+      );
     });
     const multi = multiToggles.some(
       (toggle) => getCheckedValues(toggle).length > 0,
@@ -239,7 +241,9 @@ function setupFilterBar(bar) {
       }
       const value = toggle.dataset.selectedValue;
       updates[toggle.dataset.filterParam] =
-        value && value !== "all" ? value : null;
+        value && (value !== "all" || toggle.dataset.preserveAll === "true")
+          ? value
+          : null;
     });
     return updates;
   }

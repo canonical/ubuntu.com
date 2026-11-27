@@ -124,6 +124,63 @@
   };
 
   /**
+    Makes the Tab key move through each tab followed by the links in
+    its panel (tab 1 > panel 1 links > tab 2 > panel 2 links > ...)
+    @param {Array} tabs an array of tabs within a container
+  */
+  const attachSequentialTabOrder = (tabs) => {
+    const focusableSelector =
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    const getPanel = (tab) =>
+      document.getElementById(tab.getAttribute("aria-controls"));
+
+    const getFocusables = (panel) =>
+      panel ? [].slice.call(panel.querySelectorAll(focusableSelector)) : [];
+
+    tabs.forEach((tab, index) => {
+      const panel = getPanel(tab);
+      const prevTab = tabs[index - 1];
+      const nextTab = tabs[index + 1];
+
+      tab.addEventListener("keydown", (e) => {
+        if (e.key !== "Tab") return;
+
+        if (!e.shiftKey) {
+          const focusables = getFocusables(panel);
+          if (focusables.length) {
+            e.preventDefault();
+            focusables[0].focus();
+          }
+        } else if (prevTab) {
+          e.preventDefault();
+          setActiveTab(prevTab, tabs);
+          const prevFocusables = getFocusables(getPanel(prevTab));
+          (prevFocusables[prevFocusables.length - 1] || prevTab).focus();
+        }
+      });
+
+      if (!panel) return;
+
+      panel.addEventListener("keydown", (e) => {
+        if (e.key !== "Tab") return;
+
+        const focusables = getFocusables(panel);
+        const isFirst = e.target === focusables[0];
+        const isLast = e.target === focusables[focusables.length - 1];
+
+        if (!e.shiftKey && isLast && nextTab) {
+          e.preventDefault();
+          nextTab.focus();
+        } else if (e.shiftKey && isFirst) {
+          e.preventDefault();
+          tab.focus();
+        }
+      });
+    });
+  };
+
+  /**
     Attaches events to tab links within a given parent element,
     and sets the active tab if the current hash matches the id
     of an element controlled by a tab link
@@ -145,6 +202,10 @@
       );
 
       attachEvents(tabs, persistURLHash);
+
+      if (tabContainer.getAttribute("data-tab-order") === "sequential") {
+        attachSequentialTabOrder(tabs);
+      }
 
       if (persistURLHash && currentHash) {
         const activeTabLink = document.querySelector(

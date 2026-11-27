@@ -43,8 +43,51 @@
     }
   }
 
+  // Takeover position test: the hero stays hidden until the block is above it
+  &.is-takeover-pending .p-hero {
+    display: none;
+  }
+
+  // Takeover position test variant: the block is first, so the gaps swap
+  .p-latest-block:has(~ .p-hero) {
+    padding-top: $spv--strip-regular * 0.5;
+
+    @media (min-width: $breakpoint-large) {
+      padding-top: $spv--strip-regular;
+    }
+  }
+
+  // A margin, so the hero's background still ends with the desktop
+  .p-latest-block ~ .p-hero {
+    padding-top: 0;
+
+    @media (min-width: $breakpoint-small) {
+      margin-bottom: $spv--strip-regular * 0.5;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: $spv--strip-regular;
+    }
+  }
+
+  // On phones the rule under the hero would sit right on the notification
+  .p-latest-block ~ .p-hero + .u-fixed-width {
+    display: none;
+  }
+
+  // The rule now sits between the takeover and the hero instead
+  .p-latest-block ~ .p-hero ~ .js-performance-rail .p-rule {
+    display: none;
+  }
+
   // The stage's margin alone sets the gap above the desktop
   .p-hero .p-button--brand {
+    color: $colors--light-theme--text-default;
+
+    &:visited {
+      color: $colors--light-theme--text-default;
+    }
+
     @media (min-width: $breakpoint-small) {
       margin-bottom: 0;
     }
@@ -210,7 +253,6 @@
 
   @keyframes p-hero-dock-in {
     from {
-      filter: blur(hero-cq(10));
       opacity: 0;
       transform: translateY(hero-cq(14));
     }

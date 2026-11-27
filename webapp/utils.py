@@ -2,6 +2,16 @@ import dateutil.parser
 import pytz
 
 
+def strtobool(value):
+    # distutils.util.strtobool was removed in Python 3.12
+    value = str(value).strip().lower()
+    if value in ("y", "yes", "t", "true", "on", "1"):
+        return True
+    if value in ("n", "no", "f", "false", "off", "0"):
+        return False
+    raise ValueError(f"invalid truth value {value!r}")
+
+
 def format_community_event_time(event):
     """
     Format event start and end times with timezone conversion.

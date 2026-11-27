@@ -41,8 +41,8 @@ jobs:
           controller-address: ${{ vars.JUJU_CONTROLLER_ADDRESS }}
           model-name: ${{ vars.JUJU_MODEL_NAME }}
           juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
-          juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
-          juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
+          vault-role-id: ${{ secrets.VAULT_APPROLE_ROLE_ID }}
+          vault-secret-id: ${{ secrets.VAULT_APPROLE_SECRET_ID }}
 
   deploy-production:
     needs: deploy-staging
@@ -70,6 +70,6 @@ jobs:
           controller-address: ${{ vars.JUJU_CONTROLLER_ADDRESS }}
           model-name: ${{ vars.JUJU_MODEL_NAME }}
           juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
-          juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
-          juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
+          vault-role-id: ${{ secrets.VAULT_APPROLE_ROLE_ID }}
+          vault-secret-id: ${{ secrets.VAULT_APPROLE_SECRET_ID }}
 

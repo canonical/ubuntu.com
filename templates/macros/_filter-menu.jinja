@@ -10,7 +10,7 @@
 # key_label:     (optional) static bold prefix (e.g. "Product: Ubuntu")
 # selected:      (optional) pre-select an option server-side, skipping the JS URL restore
 # default_value: (optional) baseline value used to detect "actively filtered" for Clear
-{% macro single_select_menu(param_key, default_label, options, menu_id=None, key_label=None, selected=None, default_value=None) %}
+{% macro single_select_menu(param_key, default_label, options, menu_id=None, key_label=None, selected=None, default_value=None, preserve_all=false) %}
   {% set menu_id = menu_id or param_key ~ "-menu" %}
   {% set selected_option = (options | selectattr("value", "equalto", selected) | list | first) if selected is not none else none %}
   {% set toggle_label = selected_option.label if selected_option else default_label %}
@@ -24,6 +24,7 @@
               data-filter-param="{{ param_key }}"
               data-filter-type="single"
               data-default-label="{{ default_label }}"
+              data-preserve-all="{{ preserve_all | lower }}"
               {%- if selected_option %} data-selected-value="{{ selected_option.value }}"{% endif %}
               {%- if selected is not none %} data-filter-server-managed{% endif %}
               {%- if default_value is not none %} data-filter-default-value="{{ default_value }}"{% endif %}>

@@ -1,6 +1,9 @@
 from typing import Dict, List, Optional, Union
 
-from webapp.shop.api.ua_contracts.api import UAContractsAPI
+from webapp.shop.api.ua_contracts.api import (
+    UAContractsAPI,
+    UAContractsUserHasNoAccount,
+)
 from webapp.shop.api.ua_contracts.builders import build_user_subscriptions
 from webapp.shop.api.ua_contracts.models import (
     Invoice,
@@ -86,6 +89,27 @@ class AdvantageMapper:
         users = [user.get("userInfo") for user in response.get("users")]
 
         return parse_users(users)
+
+    def get_account_tos_acceptance(self, account_id: str) -> Dict:
+        try:
+            response = self.ua_contracts_api.get_account_tos(account_id)
+        except UAContractsUserHasNoAccount:
+            return {"accepted": False, "accepted_at": None, "email": None}
+
+        return {
+            "accepted": True,
+            "accepted_at": response.get("acceptedAt"),
+            "email": response.get("email"),
+        }
+
+    def accept_account_tos(self, account_id: str) -> Dict:
+        response = self.ua_contracts_api.put_account_tos(account_id)
+
+        return {
+            "accepted": True,
+            "accepted_at": response.get("acceptedAt"),
+            "email": response.get("email"),
+        }
 
     def get_contract_token(self, contract_id: str) -> Optional[str]:
         response = self.ua_contracts_api.get_contract_token(contract_id)

@@ -3,11 +3,14 @@ from typing import Callable
 from google.cloud import datastore
 from canonicalwebteam.flask_base.env import get_flask_env
 
+# A public URL, not a secret. Inline in the dict, Bandit flags it as B105.
+GOOGLE_OAUTH_URL = "https://oauth2.googleapis.com/token"
+
 
 def get_datastore_client() -> datastore.Client:
     return datastore.Client.from_service_account_info(
         {
-            "token_uri": "https://oauth2.googleapis.com/token",
+            "token_uri": GOOGLE_OAUTH_URL,
             "project_id": get_flask_env("GOOGLE_DATASTORE_PROJECT_ID"),
             "private_key": get_flask_env(
                 "GOOGLE_DATASTORE_PRIVATE_KEY"

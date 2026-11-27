@@ -11,7 +11,11 @@ import {
   Tooltip,
 } from "@canonical/react-components";
 import { UserSubscriptionType } from "advantage/api/enum";
-import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
+import {
+  useAccountTOS,
+  useContractToken,
+  useUserSubscriptions,
+} from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
   currencyFormatter,
@@ -22,6 +26,7 @@ import {
 } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import { SelectedId } from "../../Content/types";
+import AcceptTermsModal from "../../AcceptTermsModal";
 import DetailsTabs from "../DetailsTabs";
 
 type Props = {
@@ -59,11 +64,27 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   });
   const hasAccessToToken = subscription?.statuses.has_access_to_token;
   const isBlender = isBlenderSubscription(subscription);
-  const isTokenVisible = hasAccessToToken && !isBlender;
+  // Admins viewing as another user must not be prompted on their behalf.
+  const isViewingAsAnotherUser = !!new URLSearchParams(
+    window.location.search,
+  ).get("email");
+  const isTermsCheckEnabled = !isBlender && !isViewingAsAnotherUser;
+  const { data: accountTOS, isError: isTermsCheckError } = useAccountTOS(
+    subscription?.account_id,
+    isTermsCheckEnabled,
+  );
+  const [isTermsModalDismissed, setIsTermsModalDismissed] = useState(false);
+  const isTermsAcceptancePending = accountTOS?.accepted === false;
+  // Don't request the token until acceptance is confirmed, unless the check
+  // itself fails: an outage must not lock customers out of their token.
+  const canLoadToken =
+    !isTermsCheckEnabled || accountTOS?.accepted === true || isTermsCheckError;
+  const isTokenVisible =
+    hasAccessToToken && !isBlender && !isTermsAcceptancePending;
 
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id,
-    isTokenVisible,
+    isTokenVisible && canLoadToken,
   );
 
   const SubscriptionToken = () => {
@@ -72,7 +93,21 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
         <h5 className="u-no-padding--top p-subscriptions__details-small-title">
           Token
         </h5>
-        {isLoadingToken ? (
+        {isTermsAcceptancePending ? (
+          <Notification
+            severity="caution"
+            title="Accept the Ubuntu Pro terms of service"
+            actions={[
+              {
+                label: "Review terms",
+                onClick: () => setIsTermsModalDismissed(false),
+              },
+            ]}
+          >
+            To continue accessing your token, accept or ask another user on this
+            account with the authority to accept them for your organization.
+          </Notification>
+        ) : isLoadingToken || !canLoadToken ? (
           <div className="u-sv4" data-test="token-spinner">
             <Spinner />
           </div>
@@ -189,7 +224,13 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
               ]),
         ])}
       </Row>
-      {isTokenVisible ? <SubscriptionToken /> : null}
+      {hasAccessToToken && !isBlender ? <SubscriptionToken /> : null}
+      {isTermsAcceptancePending && !isTermsModalDismissed ? (
+        <AcceptTermsModal
+          accountId={subscription.account_id}
+          onClose={() => setIsTermsModalDismissed(true)}
+        />
+      ) : null}
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={setHasUnsavedChanges}

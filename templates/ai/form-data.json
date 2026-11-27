@@ -85,6 +85,44 @@
         }
       ]
     },
+    "/ai/inference-snaps": {
+      "templatePath": "/ai/inference-snaps.html",
+      "isModal": false,
+      "modalId": "inference-snaps-modal",
+      "formData": {
+        "title": "Get in touch with our experts",
+        "introText": "Contact us about your use case",
+        "formId": 8041,
+        "returnUrl": "/ai/inference-snaps#contact-form-success",
+        "lpUrl": "https://ubuntu.com/ai/inference-snaps",
+        "product": "ai-inference-snaps"
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us more about your use case",
+          "id": "use-case",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "inference-snaps-use-case"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
     "/ai/data-science": {
       "templatePath": "/ai/data-science.html",
       "isModal": true,

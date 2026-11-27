@@ -123,11 +123,113 @@ mainList.addEventListener("click", function (e) {
   }
 });
 
-// The current set up of the navigation doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla navigation.
-function closeNotifications() {
-  const notification = document.querySelector(".p-popup-notification:target");
-  if (notification) notification.style.display = "none";
+function clearNotificationHash(notification) {
+  if (window.location.hash === `#${notification.id}`) {
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search,
+    );
+  }
 }
+
+// Close notifications when a navigation dropdown is clicked.
+function closeNotifications() {
+  const notifications = document.querySelectorAll(
+    "#notifications .p-popup-notification",
+  );
+
+  if (typeof HTMLElement.prototype.hidePopover === "function") {
+    notifications.forEach((notification) => {
+      if (notification.matches(":popover-open")) {
+        notification.hidePopover();
+      }
+    });
+  }
+
+  // Clear the hash when it points to a notification.
+  const notificationId = window.location.hash.slice(1);
+  const notification = document.getElementById(notificationId);
+
+  if (notification?.matches("#notifications .p-popup-notification")) {
+    clearNotificationHash(notification);
+  }
+}
+
+// Announce popup notifications to screen readers.
+function announceNotification(notification) {
+  const announcement = document.querySelector("#notification-announcement");
+
+  const messageElement = notification.querySelector(".p-notification__message");
+
+  const messageContent = messageElement?.cloneNode(true);
+
+  messageContent?.querySelector(".p-notification__close")?.remove();
+
+  const message = messageContent?.textContent.trim();
+
+  if (!message) {
+    return;
+  }
+
+  const announce = () => {
+    window.setTimeout(() => {
+      if (typeof notification.ariaNotify === "function") {
+        notification.ariaNotify(message);
+      } else if (announcement) {
+        announcement.textContent = "";
+        window.setTimeout(() => {
+          announcement.textContent = message;
+        }, 50);
+      }
+    }, 100);
+  };
+
+  if (document.readyState === "complete") {
+    announce();
+  } else {
+    window.addEventListener("load", announce, { once: true });
+  }
+}
+
+function announceNotifications() {
+  const notifications = document.querySelectorAll(
+    "#notifications .p-popup-notification",
+  );
+
+  notifications.forEach((notification) => {
+    notification.addEventListener("toggle", (event) => {
+      if (event.newState === "open") {
+        announceNotification(notification);
+      } else if (event.newState === "closed") {
+        clearNotificationHash(notification);
+      }
+    });
+  });
+}
+
+announceNotifications();
+
+// Open popup notifications when the page loads with a notification hash.
+function openHashNotification() {
+  const notificationId = window.location.hash.slice(1);
+  const notification = document.getElementById(notificationId);
+
+  if (!notification?.matches("#notifications .p-popup-notification")) {
+    return;
+  }
+
+  if (typeof notification.showPopover === "function") {
+    if (!notification.matches(":popover-open")) {
+      notification.showPopover();
+    }
+  } else {
+    announceNotification(notification);
+  }
+}
+
+window.addEventListener("load", openHashNotification);
+window.addEventListener("hashchange", openHashNotification);
 
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
 window.addEventListener("resize", function () {
@@ -876,7 +978,7 @@ if (accountContainer) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="button" data-js-stop-propagation>Sign in</a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="menuitem" data-js-stop-propagation>Sign in</a>`;
       } else {
         window.accountJSONRes = data.account;
         if (data.account && data.account.email) {

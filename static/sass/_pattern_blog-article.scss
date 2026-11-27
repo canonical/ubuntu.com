@@ -119,4 +119,28 @@
       }
     }
   }
+
+  // Vanilla's fixed table layout truncates cells with an ellipsis. WordPress
+  // tables often hold long unbroken strings (e.g. package versions), so size
+  // columns to content and let the table scroll sideways when it is too wide.
+  .p-post__content {
+    .table-responsive {
+      overflow-x: auto;
+
+      // WordPress nests the table in invalid markup, which leaves an empty
+      // figure behind; its default side margin adds a stray sideways scroll.
+      figure:empty {
+        display: none;
+      }
+    }
+
+    table {
+      table-layout: auto;
+    }
+
+    td,
+    th {
+      overflow: visible;
+    }
+  }
 }

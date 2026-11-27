@@ -44,7 +44,8 @@ jobs:
 
   snapshot:
     name: Take Percy snapshots
-    runs-on: ubuntu-latest
+    # Pinned: Python 3.10.14 is unavailable on ubuntu-latest (26.04)
+    runs-on: ubuntu-24.04
     needs: decide
     if: needs.decide.result == 'success' && needs.decide.outputs.should_run == 'true'
     permissions:
@@ -55,6 +56,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
+          persist-credentials: false
 
       - name: Get merge base commit SHA
         id: base_commit

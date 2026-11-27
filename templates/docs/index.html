@@ -1,0 +1,619 @@
+{% extends "templates/base.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+
+{% block title %}
+  Ubuntu Documentation
+{% endblock %}
+
+{% block meta_description %}
+  The docs directory for all Ubuntu operating systems and products.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Nij0iJC1i62kPYWXjWBDAilva6jUncIdGyUMDyOx3ig/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block outer_content %}
+
+  {% call(slot) vf_hero(
+    title_text='Documentation directory',
+    layout='fallback',
+    blocks=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "The documentation directory for all Ubuntu operating systems and products."
+        }
+      },
+    ]
+  ) -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="grid-row u-table-scroll--medium u-table-scroll--small">
+      <table class="p-table--row-groups">
+        <caption class="u-off-screen">Ubuntu documentation directory by platform and use case</caption>
+        <thead>
+          <tr>
+            <th scope="col"><span class="u-off-screen">Category</span></th>
+            <th scope="col">IoT/Edge</th>
+            <th scope="col">Embedded</th>
+            <th scope="col">Workstation</th>
+            <th scope="col">Containers and VMs</th>
+            <th scope="col">Data center</th>
+            <th scope="col">Cloud</th>
+          </tr>
+        </thead>
+        <!-- PLATFORMS -->
+        <tbody>
+          <tr>
+            <th rowspan="5" scope="rowgroup">Platform</th>
+            <td></td>
+            <td><a href="/real-time/docs/">Real-time Ubuntu</a></td>
+            <td><a href="/desktop/docs/en/latest/">Ubuntu Desktop</a></td>
+            <td><a href="https://canonical.com/lxd/docs/latest/">LXD</a></td>
+            <td><a href="https://charmed-kubeflow.io/docs">Canonical Kubeflow</a></td>
+            <td><a href="https://canonical.com/anbox-cloud/docs/">Anbox Cloud</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="/robotics/docs/en/latest/">Robotics</a></td>
+            <td><a href="/kernel/docs/">Ubuntu Kernel</a></td>
+            <td><a href="https://canonical.com/multipass/docs/latest/">Multipass</a></td>
+            <td><a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/">Canonical Kubernetes</a></td>
+            <td><a href="https://canonical.com/microcloud/docs/default/">MicroCloud</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="/core/docs">Ubuntu Core</a></td>
+            <td><a href="/server/docs/">Ubuntu Server</a></td>
+            <td><a href="/wsl/docs">Ubuntu on WSL</a></td>
+            <td><a href="https://canonical.com/openstack/docs/latest/">Canonical OpenStack</a></td>
+            <td><a href="/cloud/public-cloud/docs/">Public Cloud</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td><a href="/developers/docs/">Ubuntu for developers</a></td>
+            <td></td>
+            <td><a href="https://microk8s.io/docs">MicroK8s</a></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td><a href="/hardware/docs/">Ubuntu hardware support</a></td>
+            <td></td>
+            <td><a href="/kubernetes/charmed-k8s/docs">Charmed Kubernetes</a></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <!-- Management -->
+        <tbody>
+          <tr>
+            <th rowspan="5" scope="rowgroup">Management</th>
+            <td><a href="/docs/pebble/">Pebble</a></td>
+            <td><a href="https://snapcraft.io/docs">Snap</a></td>
+            <td><a href="/landscape/docs/">Landscape</a></td>
+            <td><a href="https://documentation.ubuntu.com/data-science-stack/en/latest/">Data Science Stack</a></td>
+            <td><a href="https://canonical.com/juju/docs/jaas/">JAAS</a></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td><a href="/pro/docs/">Ubuntu Pro</a></td>
+            <td><a href="/workshop/docs/">Workshop</a></td>
+            <td><a href="https://juju.is/docs">Juju</a></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="/docs/launchpad/">Launchpad</a></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://canonical.com/maas/docs">MAAS</a></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://canonical.com/observability/docs/">Observability</a></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <!-- Store -->
+        <tbody>
+          <tr>
+            <th rowspan="2" scope="rowgroup">Stores</th>
+            <td></td>
+            <td><a href="https://snapcraft.io/docs">Snap Store</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://charmhub.io/">Charmhub</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="/enterprise-store/docs/">Enterprise Store</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <!-- Apps -->
+        <tbody>
+          <tr>
+            <th rowspan="5" scope="rowgroup">Apps</th>
+            <td></td>
+            <td><a href="https://canonical-matter.readthedocs-hosted.com/en/latest/">Matter on Ubuntu</a></td>
+            <td><a href="/docs/adsys">ADSys</a></td>
+            <td><a href="https://dqlite.io/docs">dqlite</a></td>
+            <td><a href="/ceph/docs">Ceph</a></td>
+            <td><a href="/docs/authd">authd</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="https://mir-server.io/docs">Mir</a></td>
+            <td><a href="https://canonical-netplan.readthedocs-hosted.com/en/latest/">Netplan</a></td>
+            <td></td>
+            <td><a href="https://documentation.ubuntu.com/charmed-mlflow/en/latest/">Charmed MLflow</a></td>
+            <td><a href="https://canonical.com/data/docs">Charmed Data</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://canonical.com/ceph/docs/stable/">MicroCeph</a></td>
+            <td><a href="https://docs.cloud-init.io/en/latest/">cloud-init</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="/docs/microovn/latest/">MicroOVN</a></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://canonical.com/microstack/docs">MicroStack</a></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <!-- Tools -->
+        <tbody>
+          <tr>
+            <th scope="rowgroup">Tools</th>
+            <td></td>
+            <td><a href="/docs/snapcraft/">Snapcraft</a></td>
+            <td><a href="/chisel/docs/latest/">Chisel</a></td>
+            <td><a href="/containers/rockcraft/docs/">Rockcraft</a></td>
+            <td><a href="https://canonical.com/juju/docs/charmcraft/">Charmcraft</a></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {% call(slot) vf_equal_heights(
+    title_text="Our products",
+    image_aspect_ratio_large="auto",
+    image_aspect_ratio_small="auto",
+    image_aspect_ratio_medium="auto",
+    items=[
+      {
+        "title_text": "MAAS",
+        "title_link_attrs": {'href': 'https://canonical.com/maas/docs'},
+        "image_html":  image(url="https://assets.ubuntu.com/v1/02358d58-maas_logo_docs.png",
+            alt="MAAS",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy",
+            ) | safe,
+        "description_html": "<p>Create a bare-metal cloud with Metal as a Service for IPAM and provisioning</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://juju.is/docs'},
+        "title_text": "Juju",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/69a5b9c7-juju_logo_docs.png",
+            alt="Juju",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy",
+            ) | safe,
+        "description_html": "<p>Model-driven multi-cloud operations for applications with big data, k8s and OpenStack solutions</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://snapcraft.io/docs'},
+        "title_text": "Snapcraft",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/52cf57db-snapcraft_logo_docs.png",
+            alt="Snapcraft",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy",
+            ) | safe,
+        "description_html": "<p>A single secure package and auto-update system for Linux distributions</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://canonical.com/lxd/docs/'},
+        "title_text": "LXD",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/6d20bf67-lxd_logo_docs.png",
+            alt="LXD",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Fast, dense, and secure container and VM management at any scale</p>",
+      },
+      {
+        "title_link_attrs": {'href': '/landscape/docs/'},
+        "title_text": "Landscape",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/bae619a8-landscape_logo_docs.png",
+            alt="Landscape",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Systems management for Ubuntu - updates, package management, repositories, security</p>",
+      },
+      {
+        "title_link_attrs": {'href': '/enterprise-store/docs/'},
+        "title_text": "Enterprise Store",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/132a6320-enterprise_store_logo_docs.png",
+            alt="Enterprise Store",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>The Enterprise Store provides an on premises edge proxy to the Snap Store for your devices</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://mir-server.io/docs'},
+        "title_text": "Mir",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-mir_logo_docs.png",
+            alt="Mir",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Ultra-fast and light Wayland compositor for secure device display management</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://canonical.com/multipass/docs/latest/'},
+        "title_text": "Multipass",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d3fb1402-multipass_logo_docs.png",
+            alt="Multipass",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Ubuntu virtual machines on demand for Linux, macOS and Windows</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://docs.cloud-init.io/en/latest/'},
+        "title_text": "Cloud-init",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-cloud_init_logo_docs.png",
+            alt="Cloud-init",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Apply user data to your instances automatically</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://dqlite.io/docs/'},
+        "title_text": "Dqlite",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-dqlite_logo_docs.png",
+            alt="Dqlite",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Dqlite is a fast, embedded, persistent SQL database with Raft consensus that is perfect for fault-tolerant IoT and Edge devices.</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://microk8s.io/docs'},
+        "title_text": "MicroK8s",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/8094ba2f-microk8s_logo_docs.png",
+            alt="MicroK8s",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>The smallest, simplest, pure production K8s. For clusters, laptops, IoT and Edge, on Intel and ARM</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://documentation.ubuntu.com/canonical-kubernetes/latest/'},
+        "title_text": "Canonical Kubernetes",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/8094ba2f-canonical_kubernetes_logo_docs.png",
+            alt="Canonical Kubernetes",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://netplan.io/reference'},
+        "title_text": "Netplan",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/7b4a78bf-netplan_logo_docs.png",
+            alt="Netplan",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Network abstraction for Linux to simplify and standardize complex network configuration</p>",
+      },
+      {
+        "title_link_attrs": {'href': '/openstack/docs'},
+        "title_text": "Charmed OpenStack",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-charmed_openstack_logo_docs.png",
+            alt="Charmed OpenStack",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Enterprise private cloud engineered for the best price-performance.</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://microstack.run/docs'},
+        "title_text": "MicroStack",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-microstack_logo_docs.png",
+            alt="MicroStack",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Multi-node OpenStack for the edge, micro clouds and developers.</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://canonical.com/anbox-cloud/docs/'},
+        "title_text": "Anbox Cloud",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-anbox_cloud_logo_docs.png",
+            alt="Anbox Cloud",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Enables running Android apps on any cloud platform at scale</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://charmed-kubeflow.io/docs'},
+        "title_text": "Charmed Kubeflow",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-charmed_kubeflow_logo_docs.png",
+            alt="Charmed Kubeflow",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>End-to-end, production-ready <a href='/blog/what-is-mlops'>MLOps</a> platform on top of cloud native technologies</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://documentation.ubuntu.com/charmed-mlflow/en/latest/'},
+        "title_text": "Charmed MLflow",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-charmed_mlflow_logo_docs.png",
+            alt="Charmed MLflow",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Charmed MLflow is a platform for managing the end-to-end machine learning lifecycle.</p>",
+      },
+      {
+        "title_link_attrs": {'href': 'https://documentation.ubuntu.com/data-science-stack/en/latest/'},
+        "title_text": "Data Science Stack",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-data_science_stack_logo_docs.png",
+            alt="Data Science Stack",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Ready-to-run environment for machine learning and data science, built on MicroK8s, JupyterLab and MLflow.</p>",
+      },
+      {
+        "title_link_attrs": {'href': '/containers/rockcraft/docs/'},
+        "title_text": "Rockcraft",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/d25e3293-rockcraft_logo_docs.png",
+            alt="Rockcraft",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Rockcraft is a tool to create rocks – a new generation of secure, stable and OCI-compliant container images.</p>",
+      },
+      {
+        "title_link_attrs": {'href': '/chisel/docs/latest/'},
+        "title_text": "Chisel",
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/f2097529-chisel_logo_docs.png",
+            alt="Chisel",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>A CLI tool for creating minimal Ubuntu filesystems.</p>",
+      }
+    ]
+  ) %}
+  {% endcall %}
+
+  {% call(slot) vf_equal_heights(
+    title_text="The Ubuntu OS",
+    image_aspect_ratio_large="auto",
+    image_aspect_ratio_small="auto",
+    image_aspect_ratio_medium="auto",
+    attrs={'class': 'p-section--deep'},
+    items=[
+      {
+        "title_text": "Desktop",
+        "title_link_attrs": {'href': '/desktop/docs/en/latest/'},
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/fcbeec4b-desktop_logo_docs.png",
+            alt="Desktop",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>The world's most popular Linux for desktop computing.</p>",
+      },
+      {
+        "title_text": "Server",
+        "title_link_attrs": {'href': '/server/docs'},
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/9e9d0220-server_logo_docs.png",
+            alt="Server",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Configure a simple file server or build a fifty thousand-node cloud, learn how with the server docs.</p>",
+      },
+      {
+        "title_text": "Core",
+        "title_link_attrs": {'href': 'https://documentation.ubuntu.com/core/'},
+        "image_html":  
+          image(url="https://assets.ubuntu.com/v1/f2097529-core_logo_docs.png",
+            alt="Core",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Documentation for the new, transactionally updated Ubuntu for clouds and devices.</p>",
+      },
+      {
+        "title_text": "Ubuntu for developers",
+        "title_link_attrs": {'href': '/developers/docs/'},
+        "image_html":
+          image(url="https://assets.ubuntu.com/v1/f2097529-ubuntu_for_developers_logo_docs.png",
+            alt="Ubuntu for developers",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>This documentation provides guidance for using the Ubuntu Desktop Linux distribution as a development platform.</p>",
+      },
+      {
+        "title_text": "Public Cloud",
+        "title_link_attrs": {'href': '/cloud/public-cloud/docs/'},
+        "image_html":
+          image(url="https://assets.ubuntu.com/v1/f2097529-public_cloud_logo_docs.png",
+            alt="Public Cloud",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Secure and customized Ubuntu images for all the major cloud providers.</p>",
+      },
+      {
+        "title_text": "Real-time Ubuntu",
+        "title_link_attrs": {'href': '/real-time/docs/'},
+        "image_html":
+          image(url="https://assets.ubuntu.com/v1/f2097529-real_time_ubuntu_logo_docs.png",
+            alt="Real-time Ubuntu",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Enterprise-grade real-time kernel for end-to-end security and reliability in time-bound workloads.</p>",
+      },
+      {
+        "title_text": "Ubuntu hardware support",
+        "title_link_attrs": {'href': '/hardware/docs/'},
+        "image_html":
+          image(url="https://assets.ubuntu.com/v1/f2097529-ubuntu_hardware_support_logo_docs.png",
+            alt="Ubuntu hardware support",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Documentation for installing Ubuntu on a variety of (typically non-PC) hardware.</p>",
+      },
+      {
+        "title_text": "Ubuntu Project",
+        "title_link_attrs": {'href': '/project/docs/'},
+        "image_html":
+          image(url="https://assets.ubuntu.com/v1/f2097529-ubuntu_project_logo_docs.png",
+            alt="Ubuntu Project",
+            width="32",
+            height="32",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe,
+        "description_html": "<p>Guidance for maintainers and contributors to the Ubuntu distribution.</p>",
+      }
+    ]
+  ) %}
+  {% endcall %}
+
+{% endblock %}

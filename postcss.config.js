@@ -54,6 +54,7 @@ let config = {
           /^col/, // Protects col, col-3, col-9, col-medium-4, etc.
           /^grid-row/, // Protects modern Vanilla Framework rows (grid-row, etc.)
           /^grid-col/, // Protects modern Vanilla Framework columns (grid-col, etc.)
+          /^table-responsive$/, // Table wrapper in WordPress blog content
         ],
         greedy: [
           /^iti/,

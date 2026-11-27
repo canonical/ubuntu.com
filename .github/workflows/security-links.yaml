@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "20 7 * * *"
 
+permissions:
+  contents: read
+
 jobs:
   check-links:
     if: github.repository == 'canonical/ubuntu.com'
@@ -24,4 +27,6 @@ jobs:
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=cve--usn
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" "${BOT_URL}?room=cve--usn"

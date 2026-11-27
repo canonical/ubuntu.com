@@ -1,0 +1,89 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Ubuntu Server for Huawei Kunpeng | Download{% endblock %}
+
+{% block meta_description %}
+    Ubuntu Server for Huawei Kunpeng brings Ubuntu Server and the Ubuntu ecosystem to Huawei platforms
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+    https://docs.google.com/document/d/1tFZ-wlLgvMwSQD3qL1EyqsCz8wgrUbT3AXwiKeT15hk/edit?tab=t.0
+{% endblock meta_copydoc %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block body_class %}
+    is-paper
+{% endblock body_class %}
+
+{% block content %}
+    {% call(slot) vf_hero(
+        title_text='Ubuntu Server for Huawei Kunpeng',
+        layout='50/50',
+        blocks=[
+            {
+                "type": "description",
+                "padding": "shallow",
+                "item": {
+                    "type": "html",
+                    "content": "<p>Ubuntu Server for Huawei Kunpeng brings an optimized Ubuntu Server image to the Huawei Kunpeng SoC platform, opening the door to Huawei’s hardware acceleration and advanced microarchitectures.</p><p>This custom image fully supports Huawei Kunpeng BoostKit and its specific hardware ecosystem, including specialized network interface cards (NICs) and storage. The Kunpeng platform is designed for building out workloads in the data center, telecommunications, database, and AI spaces. With its unique deployment toolset (including Juju and MAAS), Ubuntu makes the management of those workloads straightforward.</p><p>Starting with Ubuntu 24.04 LTS, the Huawei Kunpeng 950 is supported.</p><p>This is the custom ISO Beta image of the Ubuntu Server installer for engineering preview and demo purposes. The Certified version is coming soon.</p>"
+                }
+            },
+            {
+                "type": "cta-block",
+                "padding": "shallow",
+                "item": {
+                    "primary": {
+                        "content_html": "Download 24.04.5 LTS",
+                        "attrs": {
+                            "href": "https://silicon.canonical.com/huawei/kunpeng/releases/noble/24.04-beta/server/kunpeng-noble-live-server-arm64.iso"
+                        }
+                    }
+                }
+            }
+        ]
+    ) -%}
+    {% endcall -%}
+
+    {%- call(slot) vf_tiered_list(padding="deep", is_list_full_width_on_tablet=true) -%}
+        {%- if slot == 'title' -%}
+            <h2>Get started with Ubuntu today</h2>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_1' -%}
+            <h3 class="p-heading--5">Installation guides</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_1' -%}
+            <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+            <p>
+                <a href="/server/docs/tutorial/basic-installation/#basic-installation">Installation instructions for Ubuntu Server&nbsp;›</a>
+            </p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_2' -%}
+            <h3 class="p-heading--5">Image release notes</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_2' -%}
+            <p>Please see the release notes for this Huawei custom Beta image.</p>
+            <p>
+                <a href="https://silicon.canonical.com/huawei/kunpeng/releases/noble/24.04-beta/server/Huawei-Jinze-Classic-Server-2404-Beta-Image-ReleaseNotes.pdf">Release notes&nbsp;›</a>
+            </p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_3' -%}
+            <h3 class="p-heading--5">Access to Canonical partner portal</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_3' -%}
+            <p class="u-no-margin--bottom">
+                <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
+            </p>
+            <p class="u-no-margin--bottom">
+                <a href="https://askubuntu.com/">Ask Ubuntu</a>
+            </p>
+            <p>
+                <a href="https://answers.launchpad.net/ubuntu">Launchpad</a>
+            </p>
+        {%- endif -%}
+    {%- endcall -%}
+{% endblock content %}

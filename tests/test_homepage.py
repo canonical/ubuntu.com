@@ -11,7 +11,6 @@ from vcr_unittest import VCRTestCase
 # Local
 from webapp.app import app
 
-
 BASE_INDEX = os.path.join(
     os.path.dirname(__file__), "..", "templates", "base_index.html"
 )
@@ -25,6 +24,7 @@ EXPECTED_ORDER = [
     "performance",
     "hardware",
     "pro",
+    "trusted-by",
     "open-source",
     "containers",
     "stories",
@@ -142,6 +142,20 @@ class TestHomepageRender(VCRTestCase):
         ]:
             self.assertFalse(removed in html, f"Still present: {removed}")
 
+    def test_takeover_position_test_is_switched_on(self):
+        """
+        The takeover position A/B test is on the page, switched on
+        """
+
+        soup = self.get_soup()
+        script = soup.find("script", string=re.compile("takeover position"))
+        self.assertIn("const takeoverSwitch = true;", script.string)
+        # The group is picked before the hero, so it is never painted first
+        self.assertIn("js-hero", script.find_next("section")["class"])
+        # The block is moved straight after it is parsed
+        move = soup.find("script", string=re.compile("placeTakeover\\?"))
+        self.assertEqual(move.find_previous("section")["id"], "takeover")
+
     def test_hero(self):
         """
         The hero holds the page's only h1, and its mock desktop is hidden
@@ -211,6 +225,22 @@ class TestHomepageRender(VCRTestCase):
         self.assertEqual(
             self.arrow_link_hrefs(section),
             ["/pro", "/what-is-enterprise-linux"],
+        )
+
+    def test_trusted_by_section(self):
+        section = self.get_section("Trusted by")
+        self.assertIsNotNone(section.select_one("h2.p-text--small-caps"))
+        logos = section.select("img.p-logo-section__logo")
+        self.assertEqual(
+            [logo["alt"] for logo in logos],
+            [
+                "BT Group",
+                "ESA",
+                "LaunchDarkly",
+                "OEDIV",
+                "PhonePe",
+                "SBI BITS",
+            ],
         )
 
     def test_containers_section(self):
@@ -390,6 +420,14 @@ class TestHomepageRender(VCRTestCase):
             self.assertTrue(types[0].startswith('video/webm; codecs="av01'))
             self.assertTrue(types[1].startswith('video/mp4; codecs="hvc1'))
             self.assertEqual(types[2], "video/mp4")
+
+    def test_hero_wallpaper_is_preloaded(self):
+        soup = self.get_soup()
+        preload = soup.select_one('link[rel="preload"][as="image"]')
+        style = soup.select_one(".p-hero__wallpaper")["style"]
+        self.assertIn(preload["href"], style)
+        self.assertEqual(preload["fetchpriority"], "high")
+        self.assertEqual(preload["media"], "(min-width: 620px)")
 
 
 if __name__ == "__main__":

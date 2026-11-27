@@ -1,6 +1,5 @@
 # Packages
 from datetime import datetime
-from distutils.util import strtobool
 import concurrent.futures
 
 import flask
@@ -10,6 +9,7 @@ from dateutil.parser import parse
 from requests.exceptions import HTTPError
 
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
+from webapp.utils import strtobool
 from webapp.shop.api.ua_contracts.api import (
     AccessForbiddenError,
     UAContractsAPI,

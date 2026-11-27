@@ -45,6 +45,9 @@ function setUserId() {
     cookieAcceptanceValue?.[2] === "all" ||
     cookieAcceptanceValue?.[2] === "performance"
   ) {
+    // Lets inline scripts act on consent given on the current page
+    document.dispatchEvent(new Event("analytics-consent"));
+
     // Check if user doesn't already have a user_id
     if (!getCookie("user_id")) {
       // Generate a universally unique identifier

@@ -19,6 +19,7 @@ from webapp.views import (
     account_query,
     build_tutorials_query,
     match_tags,
+    build_engage_index,
     build_engage_page,
     engage_thank_you,
     community_landing_page,
@@ -210,6 +211,26 @@ class TestProcessLocalCommunities(BaseViewTestCase):
         )
         self.assertEqual(africa_marker["lat"], 4.71111)
         self.assertEqual(africa_marker["lon"], -74.07222)
+
+    @patch("flask.render_template")
+    def test_invalid_coordinates_are_skipped(self, mock_render):
+        rows = [
+            {"name": name, "continent": "europe", "coordinates": coordinates}
+            for name, coordinates in [
+                ("Origin", "0, 0"),
+                ("NaN", "nan, 1"),
+                ("Infinity", "1, inf"),
+                ("Out of range", "91, 0"),
+                ("Invalid", "not a coordinate"),
+            ]
+        ]
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = rows
+
+        process_local_communities(local_communities)()
+
+        markers = mock_render.call_args.kwargs["map_markers"]
+        self.assertEqual([marker["name"] for marker in markers], ["Origin"])
 
 
 class TestBuildMirrorList(BaseViewTestCase):
@@ -639,6 +660,101 @@ class TestBuildEngagePageResources(BaseViewTestCase):
         self.assertEqual(
             response.headers["Cache-Control"], "public, max-age=900"
         )
+
+    @patch("webapp.views.flask.render_template")
+    def test_resource_language_filters_are_applied_before_pagination(
+        self, render_template
+    ):
+        active_items = [
+            {
+                "topic_name": f"English webinar {index}",
+                "active": "true",
+                "language": "en",
+            }
+            for index in range(15)
+        ]
+        active_items.append(
+            {
+                "topic_name": "French webinar",
+                "active": "true",
+                "language": "fr",
+            }
+        )
+        engage_docs = Mock()
+        engage_docs.api.base_url = "https://discourse.ubuntu.com/"
+        engage_docs.get_index.return_value = (
+            active_items,
+            len(active_items),
+            len(active_items),
+            len(active_items),
+        )
+        engage_docs.get_engage_pages_tags.return_value = []
+
+        with self.app.test_request_context("/engage?resource=webinar&page=2"):
+            build_engage_index(engage_docs)()
+
+        engage_docs.get_index.assert_called_once_with(
+            100,
+            0,
+            tag_value=None,
+            key="active",
+            value="true",
+            second_key="type",
+            second_value="webinar",
+        )
+        template_context = render_template.call_args.kwargs
+        self.assertEqual(template_context["total_pages"], 2)
+        self.assertEqual(template_context["metadata"], [active_items[14]])
+
+    @patch("webapp.views.flask.render_template")
+    def test_resource_language_scan_uses_raw_batch_offsets(
+        self, render_template
+    ):
+        for raw_total, excluded_count in [(32, 1), (101, 1), (101, 100)]:
+            with self.subTest(
+                raw_total=raw_total, excluded_count=excluded_count
+            ):
+                raw_items = [
+                    {
+                        "topic_name": f"English event {index}",
+                        "active": "true",
+                        "language": "en",
+                    }
+                    for index in range(raw_total)
+                ]
+                expected_items = raw_items[excluded_count:]
+                engage_docs = self._make_engage_docs([])
+                engage_docs.api.base_url = "https://discourse.ubuntu.com/"
+                engage_docs.get_engage_pages_tags.return_value = []
+
+                def get_index(limit, offset, **kwargs):
+                    start = max(offset, excluded_count)
+                    end = offset + limit
+                    batch = raw_items[start:end]
+                    return batch, raw_total, raw_total, raw_total
+
+                engage_docs.get_index.side_effect = get_index
+
+                with self.app.test_request_context(
+                    "/engage?resource=event&language=en&page=3"
+                ):
+                    build_engage_index(engage_docs)()
+
+                self.assertEqual(
+                    [
+                        call.args[1]
+                        for call in engage_docs.get_index.call_args_list
+                    ],
+                    list(range(0, raw_total, 100)),
+                )
+                template_context = render_template.call_args.kwargs
+                self.assertEqual(
+                    template_context["metadata"], expected_items[28:42]
+                )
+                self.assertEqual(
+                    template_context["total_pages"],
+                    (len(expected_items) + 13) // 14,
+                )
 
     def test_filters_by_tag_and_resource(self):
         engage_docs = self._make_engage_docs([])
@@ -1623,7 +1739,7 @@ def _developer_diaries_article(**overrides):
         "id": 1,
         "title": "Hardening old Docker images",
         "slug": "hardening",
-        "path": "/community/developer-diaries/hardening",
+        "path": "/developer-diaries/hardening",
         "image": "https://example.com/hardening.png",
         "tags": ["rock"],
         "created": datetime(2026, 6, 30),
@@ -1660,8 +1776,7 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
 
     def test_pages_and_filters_by_the_tags_of_known_topics(self):
         developer_diaries, _ = self._get(
-            "/community/developer-diaries"
-            "?page=3&topic=snaps&topic=ai&topic=bogus"
+            "/developer-diaries?page=3&topic=snaps&topic=ai&topic=bogus"
         )
 
         developer_diaries.get_index.assert_called_once_with(
@@ -1670,7 +1785,7 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
 
     def test_renders_article_cards(self):
         _, soup = self._get(
-            "/community/developer-diaries?topic=containers",
+            "/developer-diaries?topic=containers",
             articles=[_developer_diaries_article()],
             total=25,
         )
@@ -1678,13 +1793,14 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
         card = soup.select_one(".p-content-card")
         self.assertEqual(
             card.select_one(".p-content-card__main-link")["href"],
-            "/community/developer-diaries/hardening",
-        )
-        self.assertEqual(
-            card.select_one(".p-content-card__author-link").text, "Jane Doe"
+            "/developer-diaries/hardening",
         )
         self.assertIn("30 Jun 2026", card.text)
         self.assertEqual(card.select_one(".p-chip--information").text, "Rock")
+        # Authors are plain text, not links
+        byline = card.select_one(".p-content-card__author-and-date")
+        self.assertIn("Jane Doe", byline.text)
+        self.assertIsNone(byline.find("a"))
         # Likes only show on the article page
         self.assertIsNone(card.select_one(".p-icon--thumbs-up"))
         # Dark theme border and footer rule, for the dark page
@@ -1699,7 +1815,7 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
 
     def test_escapes_author_names(self):
         _, soup = self._get(
-            "/community/developer-diaries",
+            "/developer-diaries",
             articles=[
                 _developer_diaries_article(
                     author={
@@ -1710,13 +1826,13 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
             ],
         )
 
-        author_link = soup.select_one(".p-content-card__author-link")
-        self.assertEqual(author_link.text, "<b>Jane</b>")
-        self.assertIsNone(author_link.find("b"))
+        byline = soup.select_one(".p-content-card__author-and-date")
+        self.assertIn("<b>Jane</b>", byline.text)
+        self.assertIsNone(byline.find("b"))
 
     def test_tag_names_on_cards(self):
         _, soup = self._get(
-            "/community/developer-diaries",
+            "/developer-diaries",
             articles=[_developer_diaries_article(tags=["ai", "lxd", "rock"])],
         )
 
@@ -1727,7 +1843,7 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
 
     def test_no_card_footer_for_articles_without_tags(self):
         _, soup = self._get(
-            "/community/developer-diaries",
+            "/developer-diaries",
             articles=[_developer_diaries_article(tags=[])],
         )
 
@@ -1737,18 +1853,18 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
 
     def test_default_image_for_articles_without_one(self):
         _, soup = self._get(
-            "/community/developer-diaries",
+            "/developer-diaries",
             articles=[_developer_diaries_article(image=None)],
         )
 
         self.assertEqual(
             soup.select_one(".p-content-card__image")["src"],
-            "https://assets.ubuntu.com/v1/94c82a15-blog_fallback_image.png",
+            "https://assets.ubuntu.com/v1/abf693f3-ubuntu_placeholder_2.jpg",
         )
 
     def test_pagination_truncates_and_keeps_filters(self):
         _, soup = self._get(
-            "/community/developer-diaries?topic=containers&page=5",
+            "/developer-diaries?topic=containers&page=5",
             articles=[_developer_diaries_article()],
             total=120,
         )
@@ -1780,7 +1896,7 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
 
     def test_pagination_disables_previous_on_first_page(self):
         _, soup = self._get(
-            "/community/developer-diaries",
+            "/developer-diaries",
             articles=[_developer_diaries_article()],
             total=30,
         )
@@ -1794,7 +1910,7 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
         )
 
     def test_renders_without_articles(self):
-        _, soup = self._get("/community/developer-diaries?topic=ai")
+        _, soup = self._get("/developer-diaries?topic=ai")
 
         self.assertIsNone(soup.select_one(".p-content-card"))
         self.assertIsNone(soup.select_one(".p-pagination"))
@@ -1811,9 +1927,7 @@ class TestDeveloperDiariesArticle(BaseViewTestCase):
         developer_diaries.get_article.return_value = None
         view = build_developer_diaries_article(developer_diaries)
 
-        with self.app.test_request_context(
-            "/community/developer-diaries/missing"
-        ):
+        with self.app.test_request_context("/developer-diaries/missing"):
             with self.assertRaises(NotFound):
                 view("missing")
 
@@ -1838,9 +1952,7 @@ class TestDeveloperDiariesArticle(BaseViewTestCase):
         )
         view = build_developer_diaries_article(developer_diaries)
 
-        with self.app.test_request_context(
-            "/community/developer-diaries/hardening"
-        ):
+        with self.app.test_request_context("/developer-diaries/hardening"):
             soup = BeautifulSoup(view("hardening"), "html.parser")
 
         developer_diaries.get_article.assert_called_once_with("hardening")

@@ -58,6 +58,13 @@ const config = [
       }
     }
   },
+  {
+    // These files are outside tsconfig.json's "include"
+    files: ["*.js", "static/js/third-party/**/*.js"],
+    languageOptions: {
+      parserOptions: { project: null },
+    },
+  },
 ];
 
 export default config;

@@ -72,6 +72,7 @@ from webapp.shop.advantage.views import (
     cancel_trial,
     delete_account_user_role,
     get_account_offers,
+    get_account_tos,
     get_account_users,
     get_activate_view,
     get_advantage_offers,
@@ -91,6 +92,7 @@ from webapp.shop.advantage.views import (
     pro_get_request_attributes,
     pro_page_view,
     put_account_user_role,
+    put_account_tos,
     put_contract_entitlements,
 )
 from webapp.shop.views import (
@@ -177,8 +179,8 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
-with open("dynamic-sitemaps.yaml") as sitemaps_file:
-    DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
+with open("dynamic-sitemaps.yaml", encoding="utf-8") as sitemaps_file:
+    DYNAMIC_SITEMAPS = yaml.safe_load(sitemaps_file.read())
 
 # LLM-friendly site index (https://llmstxt.org/): the hand-written
 # templates/llms.txt. Built once at startup, like the config above, rather
@@ -226,7 +228,7 @@ def llms_full_txt():
     if not os.path.exists(file_path):
         return {"error": "llms-full.txt not available"}, 503
 
-    with open(file_path) as f:
+    with open(file_path, encoding="utf-8") as f:
         content = f.read()
 
     response = flask.make_response(content)
@@ -326,9 +328,9 @@ def sentry_before_send(event, hint):
                 f"{code} error" in error_msg
                 for code in ["500", "502", "503", "504"]
             ):
-                if (
-                    random.random() > 0.05
-                ):  # Drop 95% of security API retry errors
+                # Drop 95% of security API retry errors. This is log
+                # sampling, not security, so the standard PRNG is fine.
+                if random.random() > 0.05:  # nosec B311
                     return None
 
     return event
@@ -415,6 +417,16 @@ app.add_url_rule(
     "/pro/accounts/<account_id>/user",
     view_func=delete_account_user_role,
     methods=["DELETE"],
+)
+app.add_url_rule(
+    "/pro/accounts/<account_id>/tos",
+    view_func=get_account_tos,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/pro/accounts/<account_id>/tos",
+    view_func=put_account_tos,
+    methods=["PUT"],
 )
 app.add_url_rule("/pro/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/pro/subscribe/blender", view_func=blender_shop_view)
@@ -608,8 +620,8 @@ app.add_url_rule("/wsl/install", view_func=wsl_install_redirect)
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 
-with open("navigation.yaml") as navigation_file:
-    navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
+with open("navigation.yaml", encoding="utf-8") as navigation_file:
+    navigation = yaml.safe_load(navigation_file.read())
 
 app.add_url_rule(
     "/search",
@@ -971,6 +983,7 @@ app.add_url_rule(
 # "developer-diaries". Anonymous reads, so only public topics are
 # published and the admin API bucket is left alone. Own session, as
 # the shared one carries the admin API key headers.
+developer_diaries_path = "/developer-diaries"
 developer_diaries = Articles(
     api=DiscourseAPI(
         base_url="https://discourse.ubuntu.com/",
@@ -978,17 +991,17 @@ developer_diaries = Articles(
         cache=ResponseCache(ttl=300),
     ),
     tag="developer-diaries",
-    url_prefix="/community/developer-diaries",
+    url_prefix=developer_diaries_path,
     hidden_tags=["blog", "featured"],
 )
 
 app.add_url_rule(
-    "/community/developer-diaries",
+    developer_diaries_path,
     view_func=build_developer_diaries_index(developer_diaries),
 )
 
 app.add_url_rule(
-    "/community/developer-diaries/<slug>",
+    f"{developer_diaries_path}/<slug>",
     view_func=build_developer_diaries_article(developer_diaries),
 )
 

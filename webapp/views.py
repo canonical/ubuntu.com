@@ -36,7 +36,7 @@ from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
-from markupsafe import Markup
+from markupsafe import escape
 from requests import Session
 from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
@@ -72,7 +72,9 @@ def _build_mirror_list(local=False, country_code=None):
     mirror_list = []
 
     try:
-        with open(f"{os.getcwd()}/etc/ubuntu-mirrors-rss.xml") as rss:
+        with open(
+            f"{os.getcwd()}/etc/ubuntu-mirrors-rss.xml", encoding="utf-8"
+        ) as rss:
             mirrors = feedparser.parse(rss.read()).entries
     except IOError:
         pass
@@ -164,8 +166,8 @@ def wsl_install_redirect():
 
 
 def appliance_install(appliance, device):
-    with open("appliances.yaml") as appliances:
-        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+    with open("appliances.yaml", encoding="utf-8") as appliances:
+        appliances = yaml.safe_load(appliances)
 
     return flask.render_template(
         f"appliance/{appliance}/{device}.html",
@@ -193,7 +195,11 @@ def ubuntu_release_meta():
         for release in meta_data.content.decode("utf-8").split("\n\n"):
             # use the baseloader to prevent it from munging the version
             # from a string to some odd integer value
-            release_data = yaml.load(release, Loader=yaml.BaseLoader)
+            # BaseLoader only builds str/list/dict, so it can't construct
+            # arbitrary objects.
+            release_data = yaml.load(  # nosec B506
+                release, Loader=yaml.BaseLoader
+            )
 
             if (
                 "Version" not in release_data
@@ -443,7 +449,8 @@ def build_engage_index(engage_docs):
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
         preview = flask.request.args.get("preview")
-        language = flask.request.args.get("language", default=None, type=str)
+        language = flask.request.args.get("language", default="en", type=str)
+        language_filter = None if language == "all" else language
         resource = flask.request.args.get("resource", default=None, type=str)
         tags = flask.request.args.getlist("tag")
         if len(tags) == 1:
@@ -455,26 +462,60 @@ def build_engage_index(engage_docs):
         limit = 14  # adjust as needed
         offset = (page - 1) * limit
 
-        # Only show active items unless previewing. get_index only
-        # supports 2 key/value filter slots (+ tag_value), so push
-        # active=true into whichever of key/second_key isn't already
-        # claimed by resource/language, keeping pagination (current_total)
-        # accurate. If both slots are taken, fall back to filtering the
-        # returned page in Python (current_total stays unfiltered, so
-        # total_pages may include a short trailing page rather than
-        # hiding real pages of content).
+        # Only show active items unless previewing. When resource and
+        # language are both selected, scan active resource results and apply
+        # the language filter before paginating because get_index supports
+        # only two key/value filters (+ tag_value).
         key, value = "type", resource
-        second_key, second_value = "language", language
+        second_key, second_value = "language", language_filter
         filter_active_in_query = False
+        filter_language_before_pagination = False
         if preview is None:
-            if not resource:
+            if resource and language_filter:
+                key, value = "active", "true"
+                second_key, second_value = "type", resource
+                filter_active_in_query = True
+                filter_language_before_pagination = True
+            elif not resource:
                 key, value = "active", "true"
                 filter_active_in_query = True
-            elif not language:
+            elif not language_filter:
                 second_key, second_value = "active", "true"
                 filter_active_in_query = True
 
-        if tag or resource or language or filter_active_in_query:
+        if filter_language_before_pagination:
+            active_items = []
+            scan_limit = 100
+            scan_offset = 0
+            scan_total = None
+            while scan_total is None or scan_offset < scan_total:
+                (
+                    batch,
+                    count,
+                    active_count,
+                    scan_total,
+                ) = engage_docs.get_index(
+                    scan_limit,
+                    scan_offset,
+                    tag_value=tag,
+                    key=key,
+                    value=value,
+                    second_key=second_key,
+                    second_value=second_value,
+                )
+                active_items.extend(batch)
+                scan_offset += scan_limit
+
+            metadata = [
+                item
+                for item in active_items
+                if str(item.get("language", "")).strip().lower()
+                == language_filter.lower()
+            ]
+            current_total = len(metadata)
+            end_offset = offset + limit
+            metadata = metadata[offset:end_offset]
+        elif tag or resource or language_filter or filter_active_in_query:
             (
                 metadata,
                 count,
@@ -499,7 +540,11 @@ def build_engage_index(engage_docs):
                 limit, offset, key="is_static", value=None
             )
 
-        if preview is None and not filter_active_in_query:
+        if (
+            preview is None
+            and not filter_active_in_query
+            and not filter_language_before_pagination
+        ):
             metadata = [
                 item
                 for item in metadata
@@ -1248,7 +1293,7 @@ def marketo_submit():
                     "iso_code"
                 ]
         except Exception:
-            pass
+            logging.warning("GeoIP lookup failed", exc_info=True)
 
     user_id = flask.request.cookies.get("user_id") or flask.request.form.get(
         "user_id"
@@ -1580,12 +1625,16 @@ def get_user_country_by_tz():
     timezone = flask.request.args.get("tz")
 
     with open(
-        os.path.join(APP_ROOT, "static/files/timezones.json"), "r"
+        os.path.join(APP_ROOT, "static/files/timezones.json"),
+        "r",
+        encoding="utf-8",
     ) as file:
         timezones = json.load(file)
 
     with open(
-        os.path.join(APP_ROOT, "static/files/countries.json"), "r"
+        os.path.join(APP_ROOT, "static/files/countries.json"),
+        "r",
+        encoding="utf-8",
     ) as file:
         countries = json.load(file)
 
@@ -1634,8 +1683,8 @@ def subscription_centre():
             subscription_centre_submit(sfdcLeadId, True)
             return flask.redirect(f"/{return_url}")
 
-    with open("subscriptions.yaml") as subscriptions:
-        subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
+    with open("subscriptions.yaml", encoding="utf-8") as subscriptions:
+        subscriptions = yaml.safe_load(subscriptions)
 
     try:
         response = marketo_api.request(
@@ -1829,7 +1878,7 @@ def build_sitemap_tree(exclude_paths=None):
                 directory_path, base_url, exclude_paths=exclude_paths
             )
             if xml_sitemap:
-                with open(sitemap_path, "w") as f:
+                with open(sitemap_path, "w", encoding="utf-8") as f:
                     f.write(xml_sitemap)
                 logging.info(f"Sitemap saved to {sitemap_path}")
 
@@ -1875,7 +1924,7 @@ def build_sitemap_tree(exclude_paths=None):
             return {"error": "Sitemap not available"}, 503
 
         # Serve the existing sitemap
-        with open(sitemap_path, "r") as f:
+        with open(sitemap_path, "r", encoding="utf-8") as f:
             xml_sitemap = f.read()
 
         response = flask.make_response(xml_sitemap)
@@ -1926,6 +1975,13 @@ def process_local_communities(local_communities):
                     lat_str, lon_str = coordinates.split(",")
                     lat = float(lat_str.strip())
                     lon = float(lon_str.strip())
+                    if not (
+                        math.isfinite(lat)
+                        and math.isfinite(lon)
+                        and -90 <= lat <= 90
+                        and -180 <= lon <= 180
+                    ):
+                        raise ValueError("coordinates out of range")
                     community["lat"] = lat
                     community["lon"] = lon
 
@@ -2094,7 +2150,7 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
     return display_ubuntu_weekly_newsletter
 
 
-# Topic filters on /community/developer-diaries: an article matches a topic
+# Topic filters on /developer-diaries: an article matches a topic
 # when it has any of the topic's Discourse tags
 DEVELOPER_DIARIES_TOPICS = [
     {"name": "Snaps", "slug": "snaps", "tags": ["snap", "snapcraft"]},
@@ -2151,17 +2207,10 @@ def build_developer_diaries_index(developer_diaries):
                 article["tags"]
             )
             if article["author"]:
-                article["author_html"] = str(
-                    Markup(
-                        '<a class="p-content-card__author-link" '
-                        'href="{}">{}</a>'
-                    ).format(
-                        article["author"]["url"], article["author"]["name"]
-                    )
-                )
+                article["author_name"] = str(escape(article["author"]["name"]))
 
         return flask.render_template(
-            "community/developer-diaries/index.html",
+            "developer-diaries/index.html",
             articles=articles,
             topics=DEVELOPER_DIARIES_TOPICS,
             selected_topics=selected_topics,
@@ -2182,7 +2231,7 @@ def build_developer_diaries_article(developer_diaries):
         article["tag_names"] = _developer_diaries_tag_names(article["tags"])
 
         return flask.render_template(
-            "community/developer-diaries/article.html", article=article
+            "developer-diaries/article.html", article=article
         )
 
     return developer_diaries_article
@@ -2594,6 +2643,8 @@ def google_ads_verification():
     Serve the Google Ads account-access verification token from the domain
     root. Google fetches /Google-Ads.txt directly and does not reliably
     follow redirects, so this is served in place via a dedicated route.
+    Keep the backing file blank when there is no active access request to
+    avoid publishing an outdated instruction.
     """
     return flask.send_from_directory(
         flask.current_app.static_folder, "files/Google-Ads.txt"

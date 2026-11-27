@@ -33,7 +33,7 @@ function DistributorSummary({
   const duration = extractDuration(products[0].product.id);
   const { totalDiscount, totalDefaultTotal } = products.reduce(
     (acc, product) => {
-      const priceValue = product?.product?.price?.value / 100 ?? 0;
+      const priceValue = (product?.product?.price?.value ?? 0) / 100;
       const discountPercentage = product?.product?.price?.discount ?? 0;
       const quantity = product?.quantity ?? 0;
       const discount = (priceValue * discountPercentage) / 100;

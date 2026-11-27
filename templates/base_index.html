@@ -7,7 +7,7 @@
 {% endblock meta_description %}
 
 {% block meta_copydoc %}
-  https://docs.google.com/document/d/1ySJxQbqVdeH4Tra0zwBm2Tn0s56kFGnEF7d8xDRTxwU/edit
+  https://docs.google.com/document/d/1HetOqCjmXGmVHMIWpf41nb7n5XjRK2sNEVtdEO8QPGQ/edit?tab=t.0
 {% endblock %}
 
 {% block body_class %}
@@ -26,8 +26,79 @@
       </style>
     </noscript>
 
+    {# Takeover position A/B test: the variant group sees the Latest block above the hero #}
+    <script nonce="{{ csp_nonce }}">
+      (function() {
+        const takeoverSwitch = true;
+        const cookieName = "control_or_variant";
+        const readCookie = (name) =>
+          document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"))?.[2];
+        const consented = () => ["all", "performance"].includes(readCookie("_cookies_accepted"));
+
+        // Like user_id, the group is only saved and reported after analytics consent
+        if (!takeoverSwitch || !consented()) {
+          document.cookie = cookieName + "=; max-age=0; path=/";
+        }
+        if (!takeoverSwitch) return;
+
+        // Before consent nothing is saved, so every load picks a group again
+        let group = readCookie(cookieName);
+        if (group !== "control" && group !== "variant") {
+          group = Math.random() < 0.5 ? "control" : "variant";
+        }
+
+        // Safari can paint the hero before the block is moved above it, so hide it until then
+        const showHero = () => document.body.classList.remove("is-takeover-pending");
+        if (group === "variant") {
+          document.body.classList.add("is-takeover-pending");
+          document.addEventListener("DOMContentLoaded", showHero);
+        }
+
+        // Called straight after the Latest block, once both elements exist
+        window.placeTakeover = () => {
+          const hero = document.querySelector(".js-hero");
+          const takeover = document.getElementById("takeover");
+          if (!hero || !takeover) return showHero();
+
+          if (group === "variant") {
+            // Moving the element keeps the tab order the same as the visual order
+            hero.before(takeover);
+            takeover.insertAdjacentHTML(
+              "afterend",
+              '<div class="p-section--shallow"><div class="u-fixed-width"><hr class="p-rule" /></div></div>',
+            );
+            showHero();
+          }
+
+          const record = () => {
+            if (readCookie(cookieName) !== group) {
+              document.cookie = cookieName + "=" + group + "; max-age=1209600; path=/";
+            }
+            // Marketing tracks each individual group's clicks by these ids in GTM
+            for (const link of takeover.querySelectorAll("#takeover-ctas a")) {
+              link.id = group + "-" + link.id;
+            }
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+              event: "test",
+              test_type: "takeover position",
+              control_or_variant: group,
+            });
+          };
+
+          // A visitor who accepts on this page keeps the group already on screen
+          if (consented()) record();
+          else document.addEventListener("analytics-consent", record, {
+            once: true
+          });
+        };
+      })();
+    </script>
     {% include "home/_hero.html" %}
     {% include "home/_latest.html" %}
+    <script nonce="{{ csp_nonce }}">
+      window.placeTakeover?.();
+    </script>
 
     <div class="p-section">
       <div class="u-fixed-width">
@@ -50,6 +121,7 @@
     {% include "home/_performance.html" %}
     {% include "home/_hardware.html" %}
     {% include "home/_pro.html" %}
+    {% include "home/_trusted-by.html" %}
     {% include "home/_open-source.html" %}
     {% include "home/_containers.html" %}
     {% include "home/_stories.html" %}
@@ -169,8 +241,7 @@
         const title = document.getElementById("takeover-title");
         const subtitle = document.getElementById("takeover-subtitle");
         const image = document.getElementById("takeover-image");
-        const primaryUrl = document.getElementById("takeover-primary-url");
-        const secondaryUrl = document.getElementById("takeover-secondary-url");
+        const [primaryUrl, secondaryUrl] = document.querySelectorAll("#takeover-ctas a");
 
         // Set values to homepage takeover
         var selectedTakeover = takeovers[index];

@@ -1,4 +1,4 @@
-{% extends "community/_base_community.html" %}
+{% extends "templates/base.html" %}
 
 {% from "_macros/vf_in-page-navigation.jinja" import vf_in_page_navigation %}
 {% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
@@ -13,9 +13,9 @@
   {% if not(no_dark == True) %}is-dark{% endif %} developer-diaries
 {% endblock body_class %}
 
-{% block content %}
+{% block outer_content %}
 
-  {% set breadcrumbs = [{"name": "Developer diaries", "href": "/community/developer-diaries"}, {"name": "Article"}] %}
+  {% set breadcrumbs = [{"name": "Developer diaries", "href": url_for('developer_diaries_index')}, {"name": "Article"}] %}
   <div class="u-sv3">
     {% include "shared/_breadcrumbs.html" %}
   </div>
@@ -139,4 +139,4 @@
   {%- endcall %}
 
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/in-page-navigation.js') }}" defer></script>
-{% endblock content %}
+{% endblock outer_content %}

@@ -35,6 +35,7 @@ let entries = {
   activate: "./static/js/src/activate.js",
   "chiseled-chart": "./static/js/src/charts/chiseled-chart.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
+  "community-map": "./static/js/src/community-map.js",
   credentialsDashboard:
     "./static/js/src/advantage/credentials/dashboard/app.tsx",
   "table-of-contents": "./static/js/src/table-of-contents.js",
